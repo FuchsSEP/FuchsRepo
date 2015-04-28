@@ -41,6 +41,15 @@
 	\section{Package Services}
 	\section{Package Database}
 	\subsection{Klasse DatabaseConnectionManager}
+	Die Klasse ist zuständig für das Aufbauen der Verbindungen zur Datenbank. Des Weiteren
+	speichert und verwaltet sie die Datenbankverbindungen. 
+	\begin{itemize}
+		\item \method{public synchronized Connection getConnection()}
+		\item \method{public synchronized void releaseConnection()}
+		\item \method{public static DatabaseConnectionManager getInstance()}
+		\item \method{public void shutDown()}
+		
+	\end{itemize}
 	\section{Package Properties}
 	
 	\section{Package System}
@@ -69,10 +78,20 @@
 		
 		\subsection{LaunchSystem}
 		\kursiv{ManagedBean, ApplicationScoped}\\
+		Die Klasse ist zuständig für das Starten des System. Sie startet den Maintenance - Thread, lädt Properties und stellt die Datenbankverbindung her.
+		\begin{itemize}
+			\item \kursiv{@PostConstruct}\\
+			\method{public void startSystem()}
+			\item \kursiv{@PreDestroy}\\
+			\method{public void shutdownMaintenance()}
+		\end{itemize}
+		
+		
 		
 	\section{Package Util}
 	
 	\subsection{Klasse Mail}
+	\kursiv{ManagedBean, ApplicationScoped}\\
 	Die Klasse ist für die E-Mailbenachrichtigung der Benutzer zuständig. Sie ist sowohl für die automatisch gesendeten E-Mails, wie unter anderem die Verifizierung oder Accountaktivierungsbestätigung, als auch für die von Kursleitern gesendeten Mails zuständig.
 	\begin{itemize}
 		\item \method{public boolean sendVerificationMail(int UserID)}
@@ -103,9 +122,19 @@
 		\item \method{public String setProperty(String key)}
 	\end{itemize}
 	
-	\subsection{Klasse UserIDGenerator}
+	\subsection{Klasse IDGenerator}
+	Die Klasse ist zuständig für das Generieren einer im System eindeutigen Identifikationsnummer für einen Benutzer, einen Kurs oder eine Kurseinheit.
+	\begin{itemize}
+		\item \method{public static int generateUserID()}
+		\item \method{public static int generateCourseID()}
+		\item \method{public static int generateCourseUnitID(int CourseID)}
+	\end{itemize}
 	
-	\subsection{Klasse CourseIDGenerator}
+	\subsection{Klasse RandomSaltGenerator}
+	Die Klasse ist zuständig für das Generieren eines zufälligen Salt, welcher für das Hashen des Benutzerpassworts benötigt wird.
+	\begin{itemize}
+		\item \method{public static int generateRandomSalt()}
+	\end{itemize} 
 
 	\section{Package Exception}
 	\subsection{BankAccountException}
@@ -115,42 +144,42 @@
 	Dieser Abschnitt beschäftigt sich mit den benötigten Validatoren, die notwendig sind, um die Eingaben des Benutzers zu überprüfen und gegebenenfalls Fehlermeldungen zu generieren.\\
 	Alles Klassen dieses Packages implementieren das Interface Validator.
 		
-	\class{UserNameValidator}
+	\subsection{Klasse UserNameValidator}
 	Der Validator überprüft, ob der eingegebene Benutzername schon im System vergeben ist.
 	\begin{itemize}
 		\item \override
 		\method{public void validate()}
 	\end{itemize}
 	
-	\class{EMailValidator}
+	\subsection{Klasse EMailValidator}
 	Der Validator überprüft, ob die Eingabe ein gültiges E-Mail-Format besitzt und ob die eingegebene E-Mailadresse bereits im System existiert.
 	\begin{itemize}
 		\item \override
 		\method{public void validate()}
 	\end{itemize}
 	
-	\class{PasswordValidator}
+	\subsection{Klasse PasswordValidator}
 	Dieser Validator überprüft, ob das eingegebene Passwort gewisse Sicherheitsanforderungen bezüglich Länge und Zeichenwahl erfüllt. Vorgesehen Anforderungen an das Passwort sind mindestens 8 Zeichen, mindestens ein Sonderzeichen, mindestens eine Ziffer, Verwendung von Groß- und Kleinbuchstaben. Außerdem dürfen im Passwort keine Umlaute sowie kein 'ß' vorkommen.
 	\begin{itemize}
 		\item \override
 		\method{public void validate()}
 	\end{itemize}
 	
-	\class{ConfirmPasswordValidator}
+	\subsection{Klasse ConfirmPasswordValidator}
 	Dieser Validator überprüft zwei Passwörter auf ihre Übereinstimmung.
 	\begin{itemize}
 		\item \override
 		\method{public void validate()}
 	\end{itemize}
 	
-	\class{BirthdateValidator}
+	\subsection{Klasse BirthdateValidator}
 	Der Validator überprüft, ob das eingegebene Datum eingegebene Datum in der Zukunft liegt und ob es mehr als 150 Jahre zurückliegt.
 	\begin{itemize}
 		\item \override
 		\method{public void validate()}
 	\end{itemize}
 	
-	\class{UserImageValidator}
+	\subsection{Klasse UserImageValidator}
 	Dieser Validator überprüft eine Bilddatei auf die richtige Dateiendung .jpg. Zusätzlich wird überprüft, ob
 	die maximale Dateigröße und die maximal zugelassene Auflösung für ein Profilbild eines Benutzers eingehalten wird.
 	\begin{itemize}
@@ -158,42 +187,42 @@
 		\method{public void validate()}
 	\end{itemize}
 	
-    \class{DateValidator}
+    \subsection{Klasse DateValidator}
     Der Validator überprüft Datumseingaben.
     \begin{itemize}
 	    \item \override
 	    \method{public void validate()}
     \end{itemize}
     
-    \class{CreditCardValidator}
+    \subsection{Klasse CreditCardValidator}
     Der Validator überprüft, ob eine Kreditkartenummer gültig ist.
     \begin{itemize}
     	\item \override
     	\method{public void validate()}
     \end{itemize}
     
-    \class{CVCValidator}
+    \subsection{Klasse CVCValidator}
     Dieser Validator überprüft eine CVC Nummer auf ihre Gültigkeit.
     \begin{itemize}
         \item \override
      	\method{public void validate()}
     \end{itemize}
     
-    \class{OfflineTransactionValidator}
+    \subsection{Klasse OfflineTransactionValidator}
     Dieser Validator überprüft, ob bei einer Offline-Aufladung des Guthabenkontos eines Benutzers der eingegebene Name und die eingegebenen Benutzeridentifikationsnummer auch zum selben Benutzer gehören.
     \begin{itemize}
     	\item \override
     	\method{public void validate()}
     \end{itemize}
     
-    \class{PriceValidator}
+    \subsection{Klasse PriceValidator}
     Der Validator überprüft, ob der eingegebene Preis das korrekte Format hat, dass heißt, ob die Zahl nicht-negativ ist und zwei Nachkommastellen besitzt.
     \begin{itemize}
      	\item \override
      	\method{public void validate()}
     \end{itemize}
 	
-	\class{LogoImageValidator}
+	\subsection{Klasse LogoImageValidator}
 	Dieser Validator überprüft eine Bilddatei auf die richtige Dateiendung .jpg. Zusätzlich wird überprüft, ob
 	die maximale Dateigröße und die maximal zugelassene Auflösung für ein Anwendungslogo eingehalten wird.
 	\begin{itemize}
@@ -201,7 +230,7 @@
 		\method{public void validate()}
 	\end{itemize}
 	
-	\class{CustomStyleCSSValidator}
+	\subsection{Klasse CustomStyleCSSValidator}
 	Der Validator überprüft, ob die Datei den Namen 'customStyle' besitzt und ob es sich um den Dateityp mit der Endung .css handelt.
 	\begin{itemize}
 		\item \override
