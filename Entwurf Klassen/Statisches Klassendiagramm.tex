@@ -23,23 +23,31 @@
 	\chapter{Klassenbeschreibung und Klassendiagramm}
 	In diesem Kapitel werden alle Klassen der Anwendung \textbf{ofCourse} aufgeführt.
 	Um eine bessere Übersicht und Strukturierung zu erhalten wird das ganze Projekt in Pakete aufgeteilt.
-	Auf die Beschreibung der Getter- und Setter-Methoden sowie der equals() - Methoden und hashcode() - Methoden wird im Folgenden größtenteils verzichtet. In folgenden Klassen werden Implementierungen verwendet:
-	\begin{itemize}
-		\item Exception - Klassen: extends Exception
-		\item Validatoren - Klassen: implements Validator
-		\item CheckPhase: implements PhaseListener
-	\end{itemize}
+	
 	\section{Package Action}
-	\subsection{Klasse Session}
+	\subsection{Klasse SessionUser}
+	\kursiv{ManagedBean, SessionScoped}\\
+	Die Klasse speichert Informationen über die Session eines Benutzers. Gespeichert werden die ID des Benutzers, dessen Benutzerrolle, die gewählte Sprache.
+	\begin{itemize}
+		\item \method{public int getUserID()}
+		\item \method{public void setUserId(int userID)}
+		\item \method{public String getUserRole()}
+		\item \method{public void setUserRole(String userRole)}
+		\item \method{public String getLanguage()}
+		\item \method{public void setLanguage(String language)}
+	\end{itemize}
+	
 	\section{Package Model}
 	\section{Package Services}
 	\section{Package Database}
 	\subsection{Klasse DatabaseConnectionManager}
 	\section{Package Properties}
+	
 	\section{Package System}
+	
 		\subsection{Klasse CheckPhase}
-		Dieser PhaseListener Überprüft, ob der jeweilige Benutzer die Berechtigung besitzt, auf die angeforderte
-		Seite zu gelangen.
+		Die Klasse ist zuständig für die Überprüfung, ob der jeweilige Benutzer die Berechtigung besitzt, auf die angeforderte Seite zu gelangen.\\
+		Die Klasse implementiert das Interface PhaseListener.
 		\begin{itemize}
 			\item \method{public PhaseId getPhaseId()}
 			\item \override
@@ -47,36 +55,38 @@
 			\item \override
 			\method{public void afterPhase(PhaseEvent event)}	
 		\end{itemize}
-		\subsection{Klasse Maintainance}
+		
+		\subsection{Klasse Maintenance}
+		Die Klasse ist zuständig dafür, dass Kurse sechs Monate nach ihrem Enddatum automatisch aus dem System gelöscht werden.\\
+		Die Klasse implementiert das Interface Runnable.
+		\begin{itemize}
+			\item \method{public boolean isMaintenaceStopped()}
+		 	\item \method{public synchronized void shutDown()}
+		 	\item \method{public static Maintenance getInstance()}
+		 	\item \override
+		 	\method{public void run()}
+		\end{itemize}
+		
+		\subsection{LaunchSystem}
+		\kursiv{ManagedBean, ApplicationScoped}\\
 		
 	\section{Package Util}
-	\class{Mail}
-	Die Klasse ist für die E-Mailbenachrichtigung der Benutzer zuständig. Sie ist sowohl für die automatisch gesendeten EMails, wie die Verifizierung oder Accountaktivierungsbestätigung, als auch für die von Kursleitern gesendeten Mails zuständig.
+	
+	\subsection{Klasse Mail}
+	Die Klasse ist für die E-Mailbenachrichtigung der Benutzer zuständig. Sie ist sowohl für die automatisch gesendeten E-Mails, wie unter anderem die Verifizierung oder Accountaktivierungsbestätigung, als auch für die von Kursleitern gesendeten Mails zuständig.
 	\begin{itemize}
-		\item \method{public boolean sentVerificationMail(int UserID)}
-		\item \method{public boolean sendActivationMessage(int UserId)}
-		\item \method{public boolean sendMail(ArrayList<String> mailRecipients, String sender, String subject, String message)}
+		\item \method{public boolean sendVerificationMail(int UserID)}
+		\item \method{public boolean sendConfirmaitionMail(int UserID)}
+		\item \method{public boolean sendMail(String subject, String message, ArrayList<String> mailRecipients)}
 	\end{itemize}
-	\class{EncodingFilter}
-	This class is used to implement the filter methods of the interface Filter to
-	* enable UTF-8 encoding to prevent problems with character presentation.
-	Die Klasse implementiert die Filtermethoden des Interface Filter um die UTF-8 Zeichenkodierung sicherzustellen und somit Probleme bei der Zeichendarstellung  zu vermeiden.
-	\begin{itemize}
-		\item \override
-		\method{public void destroy()} 
-		\item \override
-		\method{public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain)}
-		\item \override
-		\method{public void init(FilterConfig filterConfig)}
-		\item \method{protected String getEncoding(ServletRequest request)}
-	\end{itemize}
-	\class{HashPassword}
+	
+	\subsection{Klasse PasswordHash}
 	Diese Klasse ist zuständig für das Hashen der Passwörter.
 	\begin{itemize}
 		\item \method{public static String hash(String password, int salt)}
 	\end{itemize}
-	\class{LanguageMangager}
+	
+	\subsection{Klasse LanguageMangager}
 	Diese Klasse ist zuständig für die angezeigte Systemsprache. In ihr werden die unterstützten Sprachen verwaltet und sie ist zuständig für das Auslesen der Anzeigetexte aus der .properties - Datei der gewählten Sprache.
 	\begin{itemize}
 		\item \method{public static LanguageManager getInstance()}
@@ -84,24 +94,26 @@
 		\item \method{public String getProperty(String key)}
 		\item \method{public void switchLanguage(String language)}
 	\end{itemize}
-	\class{PropertyManager}
+	
+	\subsection{Klasse PropertyManager}
 	Die Klasse ist zuständig für das Auslesen und Bearbeiten der Property - Datei, welche die Daten für die Systemkonfiguration, also die Daten für die Datenbankverbindung und den EMail - Service enthält.
 	\begin{itemize}
 		\item \method{public static PropertyManager getInstance()}
 		\item \method{public String getProperty(String key)}
 		\item \method{public String setProperty(String key)}
 	\end{itemize}
-	\class{SystemLogger}
-	\class{SystemStart}
-	\class{UserIDGenerator}
-	\class{CourseIDGenerator}
+	
+	\subsection{Klasse UserIDGenerator}
+	
+	\subsection{Klasse CourseIDGenerator}
 
 	\section{Package Exception}
 	\subsection{BankAccountException}
 	Sind Fehler, welche beim Aufladen des Guthabenkontos auftreten. 
 	
 	\section{Package Validator}
-	Dieser Abschnitt beschäftigt sich mit den benötigten Validatoren, die notwendig sind, um die Eingaben des Benutzers zu überprüfen und gegebenenfalls Fehlermeldungen zu generieren.
+	Dieser Abschnitt beschäftigt sich mit den benötigten Validatoren, die notwendig sind, um die Eingaben des Benutzers zu überprüfen und gegebenenfalls Fehlermeldungen zu generieren.\\
+	Alles Klassen dieses Packages implementieren das Interface Validator.
 		
 	\class{UserNameValidator}
 	Der Validator überprüft, ob der eingegebene Benutzername schon im System vergeben ist.
