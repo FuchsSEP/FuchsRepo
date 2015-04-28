@@ -48,12 +48,49 @@
 			\method{public void afterPhase(PhaseEvent event)}	
 		\end{itemize}
 		\subsection{Klasse Maintainance}
+		
 	\section{Package Util}
 	\class{Mail}
+	Die Klasse ist für die E-Mailbenachrichtigung der Benutzer zuständig. Sie ist sowohl für die automatisch gesendeten EMails, wie die Verifizierung oder Accountaktivierungsbestätigung, als auch für die von Kursleitern gesendeten Mails zuständig.
+	\begin{itemize}
+		\item \method{public boolean sentVerificationMail(int UserID)}
+		\item \method{public boolean sendActivationMessage(int UserId)}
+		\item \method{public boolean sendMail(ArrayList<String> mailRecipients, String sender, String subject, String message)}
+	\end{itemize}
 	\class{EncodingFilter}
+	This class is used to implement the filter methods of the interface Filter to
+	* enable UTF-8 encoding to prevent problems with character presentation.
+	Die Klasse implementiert die Filtermethoden des Interface Filter um die UTF-8 Zeichenkodierung sicherzustellen und somit Probleme bei der Zeichendarstellung  zu vermeiden.
+	\begin{itemize}
+		\item \override
+		\method{public void destroy()} 
+		\item \override
+		\method{public void doFilter(ServletRequest request, ServletResponse response,
+			FilterChain chain)}
+		\item \override
+		\method{public void init(FilterConfig filterConfig)}
+		\item \method{protected String getEncoding(ServletRequest request)}
+	\end{itemize}
 	\class{HashPassword}
+	Diese Klasse ist zuständig für das Hashen der Passwörter.
+	\begin{itemize}
+		\item \method{public static String hash(String password, int salt)}
+	\end{itemize}
 	\class{LanguageMangager}
+	Diese Klasse ist zuständig für die angezeigte Systemsprache. In ihr werden die unterstützten Sprachen verwaltet und sie ist zuständig für das Auslesen der Anzeigetexte aus der .properties - Datei der gewählten Sprache.
+	\begin{itemize}
+		\item \method{public static LanguageManager getInstance()}
+		\item \method{public LinkedHashMap<String, Object> getSupportedLanguages()}
+		\item \method{public String getProperty(String key)}
+		\item \method{public void switchLanguage(String language)}
+	\end{itemize}
 	\class{PropertyManager}
+	Die Klasse ist zuständig für das Auslesen und Bearbeiten der Property - Datei, welche die Daten für die Systemkonfiguration, also die Daten für die Datenbankverbindung und den EMail - Service enthält.
+	\begin{itemize}
+		\item \method{public static PropertyManager getInstance()}
+		\item \method{public String getProperty(String key)}
+		\item \method{public String setProperty(String key)}
+	\end{itemize}
 	\class{SystemLogger}
 	\class{SystemStart}
 	\class{UserIDGenerator}
