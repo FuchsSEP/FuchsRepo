@@ -19,7 +19,7 @@
 	\newcommand{\method}[1]{\textcolor{blue}{#1}}
 	\newcommand{\kursiv}[1]{{\it #1}}
 	\newcommand{\override}{{\it @Override}\ \\}
-	test
+	
 	\chapter{Klassenbeschreibung und Klassendiagramm}
 	In diesem Kapitel werden alle Klassen der Anwendung \textbf{ofCourse} aufgeführt.
 	Um eine bessere Übersicht und Strukturierung zu erhalten wird das ganze Projekt in Pakete aufgeteilt.
@@ -29,25 +29,27 @@
 		\item Validatoren - Klassen: implements Validator
 		\item CheckPhase: implements PhaseListener
 	\end{itemize}
-	\section{Package General}
-	\subsection{Klasse CheckPhase}
-	Dieser PhaseListener Überprüft, ob der jeweilige Benutzer die Berechtigung besitzt, auf die angeforderte
-	Seite zu gelangen.
-	\begin{itemize}
-		\item \method{public PhaseId getPhaseId()}
-		\item \override
-		\method{public void beforePhase(PhaseEvent arg0)}
-		\item \override
-		\method{public void afterPhase(PhaseEvent event)}	
-	\end{itemize}
-	\subsection{Klasse Mail}
-	\subsection{Klasse Session}
-	\subsection{Klasse DatabaseConnectionManager}
 	\section{Package Action}
+	\subsection{Klasse Session}
 	\section{Package Model}
 	\section{Package Services}
 	\section{Package Database}
+	\subsection{Klasse DatabaseConnectionManager}
+	\section{Package Properties}
+	\section{Package System}
+		\subsection{Klasse CheckPhase}
+		Dieser PhaseListener Überprüft, ob der jeweilige Benutzer die Berechtigung besitzt, auf die angeforderte
+		Seite zu gelangen.
+		\begin{itemize}
+			\item \method{public PhaseId getPhaseId()}
+			\item \override
+			\method{public void beforePhase(PhaseEvent arg0)}
+			\item \override
+			\method{public void afterPhase(PhaseEvent event)}	
+		\end{itemize}
+		\subsection{Klasse Maintainance}
 	\section{Package Util}
+	\class{Mail}
 	\class{EncodingFilter}
 	\class{HashPassword}
 	\class{LanguageMangager}
@@ -60,7 +62,6 @@
 	\section{Package Exception}
 	\subsection{BankAccountException}
 	Sind Fehler, welche beim Aufladen des Guthabenkontos auftreten. 
-	TestTestTest
 	
 	\section{Package Validator}
 	Dieser Abschnitt beschäftigt sich mit den benötigten Validatoren, die notwendig sind, um die Eingaben des Benutzers zu überprüfen und gegebenenfalls Fehlermeldungen zu generieren.
