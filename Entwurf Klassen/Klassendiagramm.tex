@@ -37,11 +37,17 @@
 		\item \method{public void setLanguage(String language)}
 	\end{itemize}
 	
+	
+
 	\section{Package Model}
 	
 	\section{Package Services}
 	
+	\section{Package Interfaces}
+	\kursiv{Nur Kommentar: Interfaces für DAO - Damit die Datenbank einfach ausgetauscht werden kann}
+	
 	\section{Package Database}
+	
 	\subsection{Klasse DatabaseConnectionManager}
 	Die Klasse ist zuständig für das Aufbauen der Verbindungen zur Datenbank. Des Weiteren
 	speichert und verwaltet sie die Datenbankverbindungen. 
@@ -135,6 +141,19 @@
 	\begin{itemize}
 		\item \method{public static int generateRandomSalt()}
 	\end{itemize} 
+	
+	\subsection{Klasse EncodingFilter}
+	Diese Klasse implementiert die Filter - Methoden um UTF-8 Encoding zu
+	ermöglichen und somit Probleme bei der Zeichendarstellung zu verhindern.
+	\begin{itemize}
+		\item \override
+		\method{public void destroy()}
+		\item \override
+		\method{public void doFilter(ServletRequest request, ServletResponse response,
+			FilterChain chain)}
+		\item \override
+		\method{public void init(FilterConfig filterConfig)}
+	\end{itemize}
 
 	\section{Package Exception}
 	\subsection{BankAccountException}
@@ -207,6 +226,13 @@
         \item \override
      	\method{public void validate()}
     \end{itemize}
+    
+    \subsection{Klasse InputTextValidator}
+    Überprüft den eingegebenen Text auf korrekte Zeichenkodierung.
+     \begin{itemize}
+     	\item \override
+     	\method{public void validate()}
+     \end{itemize}
     
     \subsection{Klasse OfflineTransactionValidator}
     Dieser Validator überprüft, ob bei einer Offline-Aufladung des Guthabenkontos eines Benutzers der eingegebene Name und die eingegebenen Benutzeridentifikationsnummer auch zum selben Benutzer gehören.
