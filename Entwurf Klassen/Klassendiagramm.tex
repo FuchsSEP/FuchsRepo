@@ -16,6 +16,7 @@
 \begin{document}
 	
 	\newcommand{\class}[1]{\paragraph{Klasse #1:}\ \\ }
+	\newcommand{\interface}[1]{\paragraph{Interface #1:}\ \\ }
 	\newcommand{\method}[1]{\textcolor{blue}{#1}}
 	\newcommand{\kursiv}[1]{{\it #1}}
 	\newcommand{\override}{{\it @Override}\ \\}
@@ -431,6 +432,20 @@
 		\item \method{public void setSmtpServer(SmtpServer smtpServer)}
 	\end{itemize}
 	
+	\subsection{InterfaceSession}
+		\begin{itemize}
+			\item \method{public SessionUser getSessionUser()}
+			\item \method{public void setSessionUser(SessionUser userSession)}
+		\end{itemize}
+		
+	\subsection{PaginationInfo}
+		\begin{itemize}
+			\item \method{public int getActualPageNumber()}
+			\item \method{public void goToSpecificPage()}
+			\item \method{public Pagination getPagination()}
+			\item \method{public void setPagination(Pagination pagination)}
+		\end{itemize}
+	
 	\section{Package model}
 	\begin{tiny}
 		SeSc \\
@@ -659,10 +674,11 @@
 	
 	\section{Package interfaces}
 	\begin{tiny}
-		TF\\
-	\end{tiny}\\
+		TF
+	\end{tiny}
+	\subsection{Interfaces DAO}
 	Dieses Package stellt Interfaces zur Verfügung, welche die DAO - Klassen implementieren müssen damit gegebenenfalls  ein Wechsel der Datenbank einfach möglich ist.
-	\class{UserInteraction}
+	\interface{UserInteraction}
 	Dieses Interface gibt vor, welche Methoden für Datenbankanfragen für das Erhalten bzw. das Schreiben von Benutzerdaten vorhanden sein müssen.
 	\begin{itemize}
 		\item \method{public void createUser(User user, Address address)}
@@ -676,7 +692,7 @@
 		\item \method{public ArrayList<Course> getCoursesLeadedBy(int userID, Pagination pagination)}
 	\end{itemize}
 	
-	\class{CourseInteraction}
+	\interface{CourseInteraction}
 	Dieses Interface gibt vor, welche Methoden für Datenbankanfragen für das Erhalten bzw. das Schreiben von Kursdaten vorhanden sein müssen.
 	\begin{itemize}
 		\item \method{public void createCourse(Course course, Address address)}
@@ -694,7 +710,7 @@
 		\item \method{public void removeLeaderFromCourse(int userID)}
 	\end{itemize}
 	
-	\class{CourseUnitInteraction}
+	\interface{CourseUnitInteraction}
 	Dieses Interface gibt vor, welche Methoden für Datenbankanfragen für das Erhalten bzw. das Schreiben von Kurseinheitsdaten vorhanden sein müssen.
 	\begin{itemize}
 		\item \method{public boolean createCourseUnit(CourseUnit courseUnit, Address address)}
@@ -707,7 +723,7 @@
 		\item \method{public void removeUserFromCourseUnit(int userID)}
 	\end{itemize}
 	
-	\class{StatisticsInteraction}
+	\interface{StatisticsInteraction}
 	Dieses Interface gibt vor, welche Methoden für Datenbankanfragen für das Erhalten von Statistikdaten oder das Schreiben dieser in die Datenbank vorhanden sein müssen.
 	\begin{itemize}
 		\item \method{public HashMap<Date, Float> getIncomePerDay(Date actualDate)}
@@ -746,15 +762,15 @@
 	Datenbank zu schreiben.\\
 	Sämtliche Methoden können die \kursiv{InvalidDBTransferException} werfen.
 	\begin{itemize}
-		\item \method{public void createUser(User user, Address address)}
-		\item \method{public List<User> getUsers(Pagination pagination)}
-		\item \method{public List<User> getUsers(Pagination pagination, String searchString)}
-		\item \method{public List<User> getUsersOrdered(Pagination pagination, String searchString, String orderParam)}
-		\item \method{public User getUser(int userID)}
-		\item \method{public int getUserID(String username)}
-		\item \method{public void updateUser(User user, Address address)}
-		\item \method{public void deleteUser(int userID)}
-		\item \method{public List<Course> getCoursesLeadedBy(int userID, Pagination pagination)}
+		\item \method{public static void createUser(User user)}
+		\item \method{public static List<User> getUsers(Pagination pagination)}
+		\item \method{public static List<User> getUsers(Pagination pagination, String searchString)}
+		\item \method{public static List<User> getUsersOrdered(Pagination pagination, String searchString, String orderParam)}
+		\item \method{public static User getUser(int userID)}
+		\item \method{public static int getUserID(String username)}
+		\item \method{public static void updateUser(User user)}
+		\item \method{public static void deleteUser(int userID)}
+		\item \method{public static List<Course> getCoursesLeadedBy(int userID, Pagination pagination)}
 	\end{itemize}
 	
 	\class{CourseDAO}
@@ -762,33 +778,33 @@
 	zu schreiben.\\
 	Sämtliche Methoden können die \kursiv{InvalidDBTransferException} werfen.
 	\begin{itemize}
-		\item \method{public void createCourse(Course course, Address address)}
-		\item \method{public List<Course> getCourses(Pagination pagination)}
-		\item \method{public List<Course> getCourses(Pagination pagination, String searchString)}
-		\item \method{public List<Course> getCoursesOrdered(Pagination pagination, String searchString, String orderParam)}
-		\item \method{public List<User> getLeaders(int courseID)}
-		\item \method{public Course getCourse(int courseID)}
-		\item \method{public List<Course> getCoursesOf(int UserID)}
-		\item \method{public void updateCourse(Course course, Address address)}
-		\item \method{public void deleteCourse(int courseID)}
-		\item \method{public void addUserToCourse(int userID)}
-		\item \method{public void removeUserFromCourse(int userID)}
-		\item \method{public void addLeaderToCourse(int userID)}
-		\item \method{public void removeLeaderFromCourse(int userID)}
+		\item \method{public static void createCourse(Course course)}
+		\item \method{public static List<Course> getCourses(Pagination pagination)}
+		\item \method{public static List<Course> getCourses(Pagination pagination, String searchString)}
+		\item \method{public static List<Course> getCoursesOrdered(Pagination pagination, String searchString, String orderParam)}
+		\item \method{public static List<User> getLeaders(int courseID)}
+		\item \method{public static Course getCourse(int courseID)}
+		\item \method{public static List<Course> getCoursesOf(int UserID)}
+		\item \method{public static void updateCourse(Course course)}
+		\item \method{public static void deleteCourse(int courseID)}
+		\item \method{public static void addUserToCourse(int userID)}
+		\item \method{public static void removeUserFromCourse(int userID)}
+		\item \method{public static void addLeaderToCourse(int userID)}
+		\item \method{public static void removeLeaderFromCourse(int userID)}
 	\end{itemize}
 	
 	\class{CourseUnitDAO}
 	Diese Klasse stellt Datenbankanfragen zur Verfügung um Kurseinheitsdaten zu erhalten oder in die Datenbank zu schreiben.\\
 	Sämtliche Methoden können die \kursiv{InvalidDBTransferException} werfen.
 	\begin{itemize}
-		\item \method{public void createCourseUnit(CourseUnit courseUnit, Address address)}
-		\item \method{public CourseUnit getCourseUnit(int courseUnitID)}
-		\item \method{public List<CourseUnit> getCourseUnitsFromCourse(int courseID, Pagination pagination)}
-		\item \method{public void updateCourseUnit(CourseUnit courseUnit, Address address)}
-		\item \method{public void deleteCourseUnit(int courseUnitID)}
-		\item \method{public void addUserToCourseUnit(int userID)}
-		\item \method{public void removeUserFromCourseUnit(int userID)}
-		\item \method{public List<CourseUnit> getCourseUnitsOf(int userID)}
+		\item \method{public static void createCourseUnit(CourseUnit courseUnit)}
+		\item \method{public static CourseUnit getCourseUnit(int courseUnitID)}
+		\item \method{public static List<CourseUnit> getCourseUnitsFromCourse(int courseID, Pagination pagination)}
+		\item \method{public static void updateCourseUnit(CourseUnit courseUnit)}
+		\item \method{public static void deleteCourseUnit(int courseUnitID)}
+		\item \method{public static void addUserToCourseUnit(int userID)}
+		\item \method{public static void removeUserFromCourseUnit(int userID)}
+		\item \method{public static List<CourseUnit> getCourseUnitsOf(int userID)}
 	\end{itemize}
 	
 	\class{StatisticDAO}
@@ -796,10 +812,10 @@
 	zu schreiben.\\
 	Sämtliche Methoden können die \kursiv{InvalidDBTransferException} werfen.
 	\begin{itemize}
-		\item \method{public Map<Date, Float> getIncomePerDay(Date actualDate)}
-		\item \method{public Map<Date, Float> getIncomePerWeek(Date actualDate)}
-		\item \method{public Map<User, Float> getIncomePerLeader(Pagination pagination)}
-		\item \method{public Map<Course, Float> getIncomePerCourse(Pagination pagination)}
+		\item \method{public static Map<Date, Float> getIncomePerDay(Date actualDate)}
+		\item \method{public static Map<Date, Float> getIncomePerWeek(Date actualDate)}
+		\item \method{public static Map<User, Float> getIncomePerLeader(Pagination pagination)}
+		\item \method{public static Map<Course, Float> getIncomePerCourse(Pagination pagination)}
 	\end{itemize}
 	
 	\section{Package system}
