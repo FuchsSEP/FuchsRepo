@@ -24,7 +24,7 @@
 	In diesem Kapitel werden alle Klassen der Anwendung \textbf{ofCourse} aufgeführt.
 	Um eine bessere Übersicht und Strukturierung zu erhalten wird das ganze Projekt in Packages aufgeteilt.
 	
-	\section{Package Action}
+	\section{Package action}
 	\begin{tiny}
 		TF\\
 	\end{tiny}\\
@@ -431,7 +431,7 @@
 		\item \method{public void setSmtpServer(SmtpServer smtpServer)}
 	\end{itemize}
 	
-	\section{Package Model}
+	\section{Package model}
 	\begin{tiny}
 		SeSc \\
 	\end{tiny}\\
@@ -640,7 +640,7 @@
 		\item \method {public void setTitle(String title)}
 	\end{itemize}
 	
-	\section{Package Services}
+	\section{Package services}
 	\begin{tiny}
 		TF
 	\end{tiny}
@@ -657,7 +657,7 @@
 		\item \method{public static boolean executeBankTransaktion(PaymentInformation payInfo)}
 	\end{itemize}
 	
-	\section{Package Interfaces}
+	\section{Package interfaces}
 	\begin{tiny}
 		TF\\
 	\end{tiny}\\
@@ -716,59 +716,59 @@
 		\item \method{public HashMap<Course, Float> getIncomePerCourse(Pagination pagination)}
 	\end{itemize}
 	
-	\section{Package Database}
+	\section{Package database}
 	\begin{tiny}
 		TF
 	\end{tiny}
-	\subsection{Package DatabaseGeneral}
+	\subsection{Package databaseGeneral}
 	
 	\class{SetupAdmin}
 	Diese Klasse ist zuständig für das Erstellen des ersten Systemadministrators.
 	\begin{itemize}
-		\item \method{public void createInitialAdmin() throws InvalidDatabaseTransferException}
+		\item \method{public static void createInitialAdmin() throws InvalidDBTransferException}
 	\end{itemize}
 	
 	\class{DatabaseTableCreator}
 	Diese Klasse ist zuständig für das Erstellen der Tabellen in der Datenbank, falls diese noch nicht existieren.
 	\begin{itemize}
-		\item \method{public static void buildUpDatabase() throws InvalidDatabaseTransferException}
+		\item \method{public static void buildUpDatabase() throws InvalidDBTransferException}
 	\end{itemize}
 	
 	\class{DatabaseTableDetroyer}
 	Diese Klasse ist zuständig für das Löschen der Tabellen in der Datenbank, falls diese existieren.
 	\begin{itemize}
-		\item \method{public static void destroyDatabaseTables() throws InvalidDatabaseTransferException}
+		\item \method{public static void destroyDatabaseTables() throws InvalidDBTransferException}
 	\end{itemize}
 	
-	\subsection{Package DAO}
+	\subsection{Package dao}
 	\class{UserDAO}
 	Diese Klasse stellt Datenbankanfragen zur Verfügung um Benutzerdaten zu erhalten oder in die
 	Datenbank zu schreiben.\\
-	Sämtliche Methoden können die \kursiv{InvalidDatabaseTransferException} werfen.
+	Sämtliche Methoden können die \kursiv{InvalidDBTransferException} werfen.
 	\begin{itemize}
 		\item \method{public void createUser(User user, Address address)}
-		\item \method{public ArrayList<User> getUsers(Pagination pagination)}
-		\item \method{public ArrayList<User> getUsers(Pagination pagination, String searchString)}
-		\item \method{public ArrayList<User> getUsersOrdered(Pagination pagination, String searchString, String orderParam)}
+		\item \method{public List<User> getUsers(Pagination pagination)}
+		\item \method{public List<User> getUsers(Pagination pagination, String searchString)}
+		\item \method{public List<User> getUsersOrdered(Pagination pagination, String searchString, String orderParam)}
 		\item \method{public User getUser(int userID)}
 		\item \method{public int getUserID(String username)}
 		\item \method{public void updateUser(User user, Address address)}
 		\item \method{public void deleteUser(int userID)}
-		\item \method{public ArrayList<Course> getCoursesLeadedBy(int userID, Pagination pagination)}
+		\item \method{public List<Course> getCoursesLeadedBy(int userID, Pagination pagination)}
 	\end{itemize}
 	
 	\class{CourseDAO}
 	Diese Klasse stellt Datenbankanfragen zur Verfügung um Kursdaten zu erhalten oder in die Datenbank
 	zu schreiben.\\
-	Sämtliche Methoden können die \kursiv{InvalidDatabaseTransferException} werfen.
+	Sämtliche Methoden können die \kursiv{InvalidDBTransferException} werfen.
 	\begin{itemize}
 		\item \method{public void createCourse(Course course, Address address)}
-		\item \method{public ArrayList<Course> getCourses(Pagination pagination)}
-		\item \method{public ArrayList<Course> getCourses(Pagination pagination, String searchString)}
-		\item \method{public ArrayList<Course> getCoursesOrdered(Pagination pagination, String searchString, String orderParam)}
-		\item \method{public ArrayList<User> getLeaders(int courseID)}
+		\item \method{public List<Course> getCourses(Pagination pagination)}
+		\item \method{public List<Course> getCourses(Pagination pagination, String searchString)}
+		\item \method{public List<Course> getCoursesOrdered(Pagination pagination, String searchString, String orderParam)}
+		\item \method{public List<User> getLeaders(int courseID)}
 		\item \method{public Course getCourse(int courseID)}
-		\item \method{public ArrayList<Course> getCoursesOf(int UserID)}
+		\item \method{public List<Course> getCoursesOf(int UserID)}
 		\item \method{public void updateCourse(Course course, Address address)}
 		\item \method{public void deleteCourse(int courseID)}
 		\item \method{public void addUserToCourse(int userID)}
@@ -779,30 +779,30 @@
 	
 	\class{CourseUnitDAO}
 	Diese Klasse stellt Datenbankanfragen zur Verfügung um Kurseinheitsdaten zu erhalten oder in die Datenbank zu schreiben.\\
-	Sämtliche Methoden können die \kursiv{InvalidDatabaseTransferException} werfen.
+	Sämtliche Methoden können die \kursiv{InvalidDBTransferException} werfen.
 	\begin{itemize}
 		\item \method{public void createCourseUnit(CourseUnit courseUnit, Address address)}
 		\item \method{public CourseUnit getCourseUnit(int courseUnitID)}
-		\item \method{public ArrayList<CourseUnit> getCourseUnitsFromCourse(int courseID, Pagination pagination)}
+		\item \method{public List<CourseUnit> getCourseUnitsFromCourse(int courseID, Pagination pagination)}
 		\item \method{public void updateCourseUnit(CourseUnit courseUnit, Address address)}
 		\item \method{public void deleteCourseUnit(int courseUnitID)}
 		\item \method{public void addUserToCourseUnit(int userID)}
 		\item \method{public void removeUserFromCourseUnit(int userID)}
-		\item \method{public ArrayList<CourseUnit> getCourseUnitsOf(int userID)}
+		\item \method{public List<CourseUnit> getCourseUnitsOf(int userID)}
 	\end{itemize}
 	
 	\class{StatisticDAO}
 	Diese Klasse stellt Datenbankanfragen zur Verfügung um Statistikdaten zu erhalten oder in die Datenbank
 	zu schreiben.\\
-	Sämtliche Methoden können die \kursiv{InvalidDatabaseTransferException} werfen.
+	Sämtliche Methoden können die \kursiv{InvalidDBTransferException} werfen.
 	\begin{itemize}
-		\item \method{public HashMap<Date, Float> getIncomePerDay(Date actualDate)}
-		\item \method{public HashMap<Date, Float> getIncomePerWeek(Date actualDate)}
-		\item \method{public HashMap<User, Float> getIncomePerLeader(Pagination pagination)}
-		\item \method{public HashMap<Course, Float> getIncomePerCourse(Pagination pagination)}
+		\item \method{public Map<Date, Float> getIncomePerDay(Date actualDate)}
+		\item \method{public Map<Date, Float> getIncomePerWeek(Date actualDate)}
+		\item \method{public Map<User, Float> getIncomePerLeader(Pagination pagination)}
+		\item \method{public Map<Course, Float> getIncomePerCourse(Pagination pagination)}
 	\end{itemize}
 	
-	\section{Package System}
+	\section{Package system}
 	\begin{tiny}
 		TF
 	\end{tiny}
@@ -821,7 +821,7 @@
 	Die Klasse ist zuständig für den Wartungsthread, der dafür sorgt, dass Kurse sechs Monate nach ihrem Enddatum automatisch aus dem System gelöscht werden.\\
 	Die Klasse implementiert das Interface Runnable.
 	\begin{itemize}
-		\item \method{public boolean isMaintenaceStopped()}
+		\item \method{public synchronized boolean isMaintenaceStopped()}
 		\item \method{public synchronized void shutDown()}
 		\item \method{public static Maintenance getInstance()}
 		\item \override
@@ -849,7 +849,7 @@
 	\end{itemize}
 	
 	
-	\section{Package Util}
+	\section{Package utilities}
 	\begin{tiny}
 		TF
 	\end{tiny}
@@ -863,7 +863,7 @@
 	Diese Klasse ist zuständig für die angezeigte Systemsprache. In ihr werden die unterstützten Sprachen verwaltet und sie ist zuständig für das Auslesen der Anzeigetexte aus der Properties - Datei der gewählten Sprache.
 	\begin{itemize}
 		\item \method{public static LanguageManager getInstance()}
-		\item \method{public LinkedHashMap<String, Object> getSupportedLanguages()}
+		\item \method{public Map<String, Object> getSupportedLanguages()}
 		\item \method{public String getProperty(String key)}
 		\item \method{public void switchLanguage(String language)}
 	\end{itemize}
@@ -873,10 +873,9 @@
 	\begin{itemize}
 		\item \method{public static PropertyManager getInstance()}
 		\item \method{public String getProperty(String key)}
-		\item \method{public String setProperty(String key)}
 	\end{itemize}
 	
-	\subsection{Klasse IDGenerator}
+	\subsection{Klasse IDGenerator(evtl über DAO)}
 	Die Klasse ist zuständig für das Generieren einer im System eindeutigen Identifikationsnummer für einen Benutzer, einen Kurs oder eine Kurseinheit.
 	\begin{itemize}
 		\item \method{public static int generateUserID()}
@@ -884,26 +883,23 @@
 		\item \method{public static int generateCourseUnitID(int CourseID)}
 	\end{itemize}
 	
-	\subsection{Klasse RandomSaltGenerator}
-	Die Klasse ist zuständig für das Generieren eines zufälligen Salt, welcher für das Hashen des Benutzerpassworts benötigt wird.
-	\begin{itemize}
-		\item \method{public static int generateRandomSalt()}
-	\end{itemize} 
 	
 	\subsection{Klasse EncodingFilter}
 	Diese Klasse implementiert die Filter - Methoden um UTF-8 Encoding zu
-	ermöglichen und somit Probleme bei der Zeichendarstellung zu verhindern.
+	ermöglichen und somit Probleme bei der Zeichendarstellung zu verhindern.\\
+	Die Klasse implementiert das Interface Filter.
 	\begin{itemize}
 		\item \override
 		\method{public void destroy()}
 		\item \override
 		\method{public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain)}
+			FilterChain chain) throws IOException, ServletException}
 		\item \override
-		\method{public void init(FilterConfig filterConfig)}
+		\method{public void init(FilterConfig filterConfig) throws ServletException}
+		\item \method{protected String selectEncoding(ServletRequest request)}
 	\end{itemize}
 	
-	\section{Package Exception}
+	\section{Package exception}
 	\begin{tiny}
 		SeSc
 	\end{tiny}
@@ -936,7 +932,7 @@
 	\subsection{InvalidDBTransferException}
 	Diese Klasse behandelt SQL-Exceptions und  TimeOut - Exceptions im Zusammenhang mit der Datenbankverbindungen.
 	
-	\section{Package CustomValidator}
+	\section{Package customValidator}
 	\begin{tiny}
 		TF\\
 	\end{tiny}\\
@@ -947,35 +943,40 @@
 	Der Validator überprüft, ob der eingegebene Benutzername schon im System vergeben ist.
 	\begin{itemize}
 		\item \override
-		\method{public void validate()}
+		\method{public void validate(FacesContext fctx, UIComponent component, Object value)
+			throws ValidatorException}
 	\end{itemize}
 	
 	\subsection{Klasse EMailValidator}
 	Der Validator überprüft, ob die Eingabe ein gültiges E-Mail-Format besitzt und ob die eingegebene E-Mailadresse bereits im System existiert.
 	\begin{itemize}
 		\item \override
-		\method{public void validate()}
+		\method{public void validate(FacesContext fctx, UIComponent component, Object value)
+			throws ValidatorException}
 	\end{itemize}
 	
 	\subsection{Klasse PasswordValidator}
 	Dieser Validator überprüft, ob das eingegebene Passwort gewisse Sicherheitsanforderungen bezüglich Länge und Zeichenwahl erfüllt. Vorgesehene Anforderungen an das Passwort sind mindestens 8 Zeichen, mindestens ein Sonderzeichen, mindestens eine Ziffer, Verwendung von Groß- und Kleinbuchstaben. Außerdem dürfen im Passwort keine Umlaute sowie kein \grq ß\grq \ vorkommen.
 	\begin{itemize}
 		\item \override
-		\method{public void validate()}
+		\method{public void validate(FacesContext fctx, UIComponent component, Object value)
+			throws ValidatorException}
 	\end{itemize}
 	
 	\subsection{Klasse ConfirmPasswordValidator}
 	Dieser Validator überprüft zwei Passwörter auf ihre Übereinstimmung.
 	\begin{itemize}
 		\item \override
-		\method{public void validate()}
+		\method{public void validate(FacesContext fctx, UIComponent component, Object value)
+			throws ValidatorException}
 	\end{itemize}
 	
 	\subsection{Klasse DateOfBirthValidator}
 	Der Validator überprüft, ob das eingegebene Datum eingegebene Datum in der Zukunft liegt oder ob es mehr als 150 Jahre zurückliegt.
 	\begin{itemize}
 		\item \override
-		\method{public void validate()}
+		\method{public void validate(FacesContext fctx, UIComponent component, Object value)
+			throws ValidatorException}
 	\end{itemize}
 	
 	\subsection{Klasse UserImageValidator}
@@ -983,49 +984,56 @@
 	die maximale Dateigröße und die maximal zugelassene Auflösung für ein Profilbild eines Benutzers eingehalten wird.
 	\begin{itemize}
 		\item \override
-		\method{public void validate()}
+		\method{public void validate(FacesContext fctx, UIComponent component, Object value)
+			throws ValidatorException}
 	\end{itemize}
 	
 	\subsection{Klasse DateValidator}
 	Der Validator überprüft Datumseingaben.
 	\begin{itemize}
 		\item \override
-		\method{public void validate()}
+		\method{public void validate(FacesContext fctx, UIComponent component, Object value)
+			throws ValidatorException}
 	\end{itemize}
 	
 	\subsection{Klasse CreditCardValidator}
 	Der Validator überprüft, ob eine Kreditkartenummer gültig ist.
 	\begin{itemize}
 		\item \override
-		\method{public void validate()}
+		\method{public void validate(FacesContext fctx, UIComponent component, Object value)
+			throws ValidatorException}
 	\end{itemize}
 	
 	\subsection{Klasse CVCValidator}
 	Dieser Validator überprüft eine CVC Nummer auf ihre Gültigkeit.
 	\begin{itemize}
 		\item \override
-		\method{public void validate()}
+		\method{public void validate(FacesContext fctx, UIComponent component, Object value)
+			throws ValidatorException}
 	\end{itemize}
 	
 	\subsection{Klasse InputTextValidator}
 	Überprüft den eingegebenen Text auf korrekte Zeichenkodierung.
 	\begin{itemize}
 		\item \override
-		\method{public void validate()}
+		\method{public void validate(FacesContext fctx, UIComponent component, Object value)
+			throws ValidatorException}
 	\end{itemize}
 	
 	\subsection{Klasse OfflineTransactionValidator}
 	Dieser Validator überprüft, ob bei einer Offline-Aufladung des Guthabenkontos eines Benutzers der eingegebene Name und die eingegebenen Benutzeridentifikationsnummer auch zum selben Benutzer gehören.
 	\begin{itemize}
 		\item \override
-		\method{public void validate()}
+		\method{public void validate(FacesContext fctx, UIComponent component, Object value)
+			throws ValidatorException}
 	\end{itemize}
 	
 	\subsection{Klasse PriceValidator}
 	Der Validator überprüft, ob der eingegebene Preis das korrekte Format hat, dass heißt, ob die Zahl nicht-negativ ist und zwei Nachkommastellen besitzt.
 	\begin{itemize}
 		\item \override
-		\method{public void validate()}
+		\method{public void validate(FacesContext fctx, UIComponent component, Object value)
+			throws ValidatorException}
 	\end{itemize}
 	
 	\subsection{Klasse ImageValidator}
@@ -1033,14 +1041,16 @@
 	die maximale Dateigröße und die maximal zugelassene Auflösung für ein Bild(Logo oder Kursbild) eingehalten wird.
 	\begin{itemize}
 		\item \override
-		\method{public void validate()}
+		\method{public void validate(FacesContext fctx, UIComponent component, Object value)
+			throws ValidatorException}
 	\end{itemize}
 	
 	\subsection{Klasse CustomStyleCSSValidator}
 	Der Validator überprüft, ob die Datei den Namen 'customStyle' besitzt und ob es sich um den Dateityp mit der Endung .css handelt.
 	\begin{itemize}
 		\item \override
-		\method{public void validate()}
+		\method{public void validate(FacesContext fctx, UIComponent component, Object value)
+			throws ValidatorException}
 	\end{itemize}
 	
 	\section{Klassendiagramm}
