@@ -34,7 +34,7 @@
 	\kursiv{ManagedBean, RequestScoped}\\
 	Die Klasse ist für die Authentifizierung eines Benutzers im System zuständig.
 	\begin{itemize}
-		\item \method{public void login()}
+		\item \method{public String login()}
 		\item \method{public User getLoginUser()}
 		\item \method{public void setLoginUser(User userToLogIn)}
 		\item \method{public SessionUser getSessionUser()}
@@ -45,7 +45,7 @@
 	\kursiv{ManagedBean, RequestScoped}\\
 	Die Klasse ist für die Registrierung eines Benutzers im System zuständig.
 	\begin{itemize}
-		\item \method{public void registerUser()}
+		\item \method{public String registerUser()}
 		\item \method{public User getUsertoRegistrate()}
 		\item \method{public void setUserToRegistrate(User userToRegistrate)}
 		\item \method{public SessionUser getSessionUser()}
@@ -115,7 +115,7 @@
 	\begin{itemize}
 		\item \method{public void editUserdata()}
 		\item \method{public void saveUserdata()}
-		\item \method{public boolean uploadProfilPic()}
+		\item \method{public void uploadProfilPic()}
 		\item \method{public void setUserInactive()}
 		\item \method{public void depositMoneyPerCreditcard()}
 		\item \method{public User getUser()}
@@ -145,7 +145,7 @@
 		\item \method{public String signUpForCourseUnits() throws CourseRegistrationException}
 		\item \method{public String signOffFromCourseUnits() throws CourseRegistrationException}
 		\item \method{public List<CourseUnit> getSelectedCourseUnits()}
-		\item \method{public void setSelectedCourseUnits(ArrayList<CourseUnit> selectedCourseUnits)}
+		\item \method{public void setSelectedCourseUnits(List<CourseUnit> selectedCourseUnits)}
 		\item \method{public List<User> getLeadersOfCourse()}
 		\item \method{public void setLeadersOfCourse(List<User> leaders)}
 		\item \method{public List<CourseUnit> getCourseUnitsOfCourse()}
@@ -174,7 +174,7 @@
 		\item \method{public void setUserToAdd(User userToAdd)}
 		\item \method{public boolean deleteUsersFromCourse()}
 		\item \method{public List<User> getUserToDelete()}
-		\item \method{public void setUsersToDelete(ArrayList<User> usersToDelete)}
+		\item \method{public void setUsersToDelete(List<User> usersToDelete)}
 		\item \method{public boolean getIsRegularCourseUnit()}
 		\item \method{public void setIsRegularCourseUnit(boolean isRegular)}
 		\item \method{public Cycle getCylceOfCourseUnit()}
@@ -182,7 +182,7 @@
 		\item \method{public CourseUnit getCourseUnit()}
 		\item \method{public void setCourseUnit(CourseUnit courseUnit)}
 		\item \method{public List<User> getParticipientsOfCourseUnit()}
-		\item \method{public void setParticipientsOfCourseUnit(ArrayList<User> participients)}
+		\item \method{public void setParticipientsOfCourseUnit(List<User> participients)}
 		\item \method{public int getActualPageNumber()}
 		\item \method{public void goToSpecificPage()}
 		\item \method{public Pagination getPagination()}
@@ -372,7 +372,7 @@
 	Diese Klasse ist zuständig für das Laden der Anmeldeseite, das Abmelden und der Auswahl der Anzeigesprache.
 	\begin{itemize}
 		\item \method{public String login()}
-		\item \method{public boolean logout()}
+		\item \method{public String logout()}
 		\item \method{public String getChoosenLanguage()}
 		\item \method{public void setChoosenLanguage(String choosenLanguage)}
 		\item \method{public SessionUser getSessionUser()}
@@ -392,7 +392,7 @@
 	\kursiv{ManagedBean, RequestScoped}\\
 	Diese Klasse ist zuständig für die Generierung und Darstellung des persönlichen Terminplaners des Benutzers.
 	\begin{itemize}
-		\item \method{public void displayScheduler(ArrayList<CourseUnit> bookedCourseUnits)}
+		\item \method{public void displayScheduler(List<CourseUnit> bookedCourseUnits)}
 		\item \method{public void displayNextWeek()}
 		\item \method{public void displayPreviousWeek()}
 		\item \method{public SessionUser getSessionUser()}
@@ -419,7 +419,7 @@
 	\begin{itemize}
 		\item \method{public boolean sendVerificationMail(int UserID) throws MailingException}
 		\item \method{public boolean sendConfirmaitionMail(int UserID) throws MailingException}
-		\item \method{public boolean sendMail(String subject, String message, ArrayList<String> mailRecipients) throws MailingException}
+		\item \method{public boolean sendMail(String subject, String message, List<String> mailRecipients) throws MailingException}
 		\item \method{public SmtpServer getSmtpServer()}
 		\item \method{public void setSmtpServer(SmtpServer smtpServer)}
 	\end{itemize}
