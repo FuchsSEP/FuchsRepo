@@ -34,7 +34,7 @@
 	\kursiv{ManagedBean, RequestScoped}\\
 	Die Klasse ist für die Authentifizierung eines Benutzers im System zuständig.
 	\begin{itemize}
-		\item \method{public boolean login()}
+		\item \method{public void login()}
 		\item \method{public User getLoginUser()}
 		\item \method{public void setLoginUser(User userToLogIn)}
 		\item \method{public SessionUser getSessionUser()}
@@ -45,11 +45,9 @@
 	\kursiv{ManagedBean, RequestScoped}\\
 	Die Klasse ist für die Registrierung eines Benutzers im System zuständig.
 	\begin{itemize}
-		\item \method{public boolean registerUser()}
+		\item \method{public void registerUser()}
 		\item \method{public User getUsertoRegistrate()}
 		\item \method{public void setUserToRegistrate(User userToRegistrate)}
-		\item \method{public Address getAddress()}
-		\item \method{public void setAddress(Address addressToSet)}
 		\item \method{public SessionUser getSessionUser()}
 		\item \method{public void setSessionUser(SessionUser userSession)}
 	\end{itemize}
@@ -58,19 +56,21 @@
 	\kursiv{ManagedBean, RequestScoped}\\
 	Die Klasse ist für die 'Passwort  vergessen' - Funktion zuständig, d.h. sie ersetzt das alte Passwort eines Benutzers durch ein zufällig generiertes und sendet es an die eingegebene E-Mailadresse.
 	\begin{itemize}
-		\item \method{public boolean resetPassword()}
+		\item \method{public void resetPassword()}
 		\item \method{public String getEmailAddressToResetPassword()}
 		\item \method{public void setEmailAddressToResetPassword(String emailToResetPassword)}
 		\item \method{public User getUser()}
 		\item \method{public void setUser(User user)}
+		\item \method{public SessionUser getSessionUser()}
+		\item \method{public void setSessionUser(SessionUser userSession)}
 	\end{itemize}
 	
 	\subsection{Klasse SearchUser}
 	\kursiv{ManagedBean, ViewScoped}\\
 	Diese Klasse stellt den Mechanismus zum Suchen von Benutzern zur Verfügung.
 	\begin{itemize}
-		\item \method{public ArrayList<User> getSearchResult()}
-		\item \method{public void setSearchResult(ArrayList<User> searchResult)}
+		\item \method{public List<User> getSearchResult()}
+		\item \method{public void setSearchResult(List<User> searchResult)}
 		\item \method{public void search(String searchParam, String searchTerm)}
 		\item \method{public String getSearchParam()}
 		\item \method{public void setSearchParam(String searchParam)}
@@ -93,8 +93,8 @@
 		\item \method{public void displayCoursesInSpecificPeriod()}
 		\item \method{public String getDisplayPeriod()}
 		\item \method{public void setDisplayPeriod(String displayPeriod)}
-		\item \method{public ArrayList<Course> getSearchResult()}
-		\item \method{public void setSearchResult(ArrayList<Course> searchResult)}
+		\item \method{public List<Course> getSearchResult()}
+		\item \method{public void setSearchResult(List<Course> searchResult)}
 		\item \method{public void search(String searchParam, String searchTerm)}
 		\item \method{public String getSearchParam()}
 		\item \method{public void setSearchParam(String searchParam)}
@@ -120,10 +120,8 @@
 		\item \method{public void depositMoneyPerCreditcard()}
 		\item \method{public User getUser()}
 		\item \method{public void setUser(User userToSet)}
-		\item \method{public Address getAddress()}
-		\item \method{public void setAddress(Address addressToSet)}
-		\item \method{public ArrayList<Course> getManagedCourses()}
-		\item \method{public void setManagedCourses(ArrayList<Course> managedCourses)}
+		\item \method{public List<Course> getManagedCourses()}
+		\item \method{public void setManagedCourses(List<Course> managedCourses)}
 		\item \method{public int getActualPageNumber()}
 		\item \method{public void goToSpecificPage()}
 		\item \method{public Pagination getPagination()}
@@ -146,12 +144,12 @@
 		\item \method{public void selectAllCourseUnits()}
 		\item \method{public String signUpForCourseUnits() throws CourseRegistrationException}
 		\item \method{public String signOffFromCourseUnits() throws CourseRegistrationException}
-		\item \method{public ArrayList<CourseUnit> getSelectedCourseUnits()}
+		\item \method{public List<CourseUnit> getSelectedCourseUnits()}
 		\item \method{public void setSelectedCourseUnits(ArrayList<CourseUnit> selectedCourseUnits)}
-		\item \method{public ArrayList<User> getLeadersOfCourse()}
-		\item \method{public void setLeadersOfCourse(ArrayList<User> leaders)}
-		\item \method{public ArrayList<CourseUnit> getCourseUnitsOfCourse()}
-		\item \method{public void setCourseUnitsOfCourse(ArrayList<CourseUnit> courseUnits)}
+		\item \method{public List<User> getLeadersOfCourse()}
+		\item \method{public void setLeadersOfCourse(List<User> leaders)}
+		\item \method{public List<CourseUnit> getCourseUnitsOfCourse()}
+		\item \method{public void setCourseUnitsOfCourse(List<CourseUnit> courseUnits)}
 		\item \method{public String loadParticipientsPage()}
 		\item \method{public String loadCreateCourseUnitPage()}
 		\item \method{public String loadEditCourseUnitPage()}
@@ -175,7 +173,7 @@
 		\item \method{public User getUserToAdd()}
 		\item \method{public void setUserToAdd(User userToAdd)}
 		\item \method{public boolean deleteUsersFromCourse()}
-		\item \method{public ArrayList<User> getUserToDelete()}
+		\item \method{public List<User> getUserToDelete()}
 		\item \method{public void setUsersToDelete(ArrayList<User> usersToDelete)}
 		\item \method{public boolean getIsRegularCourseUnit()}
 		\item \method{public void setIsRegularCourseUnit(boolean isRegular)}
@@ -183,9 +181,7 @@
 		\item \method{public void setCylceOfCourseUnit(Cycle cycle)}
 		\item \method{public CourseUnit getCourseUnit()}
 		\item \method{public void setCourseUnit(CourseUnit courseUnit)}
-		\item \method{public Address getAddress()}
-		\item \method{public void setAddress(Address addressToSet)}
-		\item \method{public ArrayList<User> getParticipientsOfCourseUnit()}
+		\item \method{public List<User> getParticipientsOfCourseUnit()}
 		\item \method{public void setParticipientsOfCourseUnit(ArrayList<User> participients)}
 		\item \method{public int getActualPageNumber()}
 		\item \method{public void goToSpecificPage()}
@@ -206,8 +202,8 @@
 		\item \method{public void setSubject(String subject)}
 		\item \method{public String getMessageToSend()}
 		\item \method{public void setMessageToSend(String messageToSend)}
-		\item \method{public ArrayList<String> getMailRecipients()}
-		\item \method{public void setMailRecipients(ArrayList<String> mailRecipients)}
+		\item \method{public List<String> getMailRecipients()}
+		\item \method{public void setMailRecipients(List<String> mailRecipients)}
 		\item \method{public SessionUser getSessionUser()}
 		\item \method{public void setSessionUser(SessionUser userSession)}
 	\end{itemize}
@@ -216,8 +212,8 @@
 	\kursiv{ManagedBean, RequestScoped}\\
 	Die Klasse ist zuständig für die Anzeige der angemeldeten Kurse eines Benutzers.
 	\begin{itemize}
-		\item \method{public ArrayList<Course> getRegisteredCourses()}
-		\item \method{public void setRegisteredCourses(ArrayList<Course> registeredCourses)}
+		\item \method{public List<Course> getRegisteredCourses()}
+		\item \method{public void setRegisteredCourses(List<Course> registeredCourses)}
 		\item \method{public String loadCourseDetailsPageOfSelectedCourse()}
 		\item \method{public int getActualPageNumber()}
 		\item \method{public void goToSpecificPage()}
@@ -238,14 +234,12 @@
 		\item \method{public User getLeaderToAdd()}
 		\item \method{public void setLeaderToAdd(User leaderToAdd)}
 		\item \method{public boolean removeCourseLeader()}
-		\item \method{public ArrayList<User> getLeadersToDelete()}
-		\item \method{public void setLeadersToDelete(ArrayList<User> leadersToDelete)}
+		\item \method{public List<User> getLeadersToDelete()}
+		\item \method{public void setLeadersToDelete(List<User> leadersToDelete)}
 		\item \method{public User getCourseLeader()}
 		\item \method{public void setCourseLeader()}
 		\item \method{public Course getCourse()}
 		\item \method{public void setCourse(Course course)}
-		\item \method{public Address getAddress()}
-		\item \method{public void setAddress(Address address)}
 		\item \method{public SessionUser getSessionUser()}
 		\item \method{public void setSessionUser(SessionUser userSession)}
 	\end{itemize}
@@ -255,10 +249,10 @@
 	Die Klasse ist für die Aktivierung von Benutzeraccounts durch einen Kursleiter oder Administrator zuständig.
 	\begin{itemize}
 		\item \method{public boolean activateAccounts()}
-		\item \method{public ArrayList<User> getUsersToActivate()}
-		\item \method{public void setUsersToActivate(ArrayList<User> usersToActivate)}
-		\item \method{public ArrayList<User> getSelectedUsers()}
-		\item \method{public void setSelectedUsers(ArrayList<User> selectedUsers)}
+		\item \method{public List<User> getUsersToActivate()}
+		\item \method{public void setUsersToActivate(List<User> usersToActivate)}
+		\item \method{public List<User> getSelectedUsers()}
+		\item \method{public void setSelectedUsers(List<User> selectedUsers)}
 		\item \method{public int getActualPageNumber()}
 		\item \method{public void goToSpecificPage()}
 		\item \method{public Pagination getPagination()}
@@ -276,8 +270,6 @@
 		\item \method{public boolean deleteUser()}
 		\item \method{public User getUser()}
 		\item \method{public void setUser(User user)}
-		\item \method{public Address getAddress()}
-		\item \method{public void setAddress(Address address)}
 		\item \method{public SessionUser getSessionUser()}
 		\item \method{public void setSessionUser(SessionUser userSession)}
 	\end{itemize}
@@ -286,11 +278,11 @@
 	\kursiv{ManagedBean, RequestScoped}\\
 	Die Klasse ist zuständig für das Anzeigen der Teilnehmer einer Kurseinheit oder eines Kurses und für die Entfernung einzelner Benutzer aus Kursen oder Kurseinheiten.
 	\begin{itemize}
-		\item \method{public ArrayList<User> getParticipients()}
-		\item \method{public void setParticipients(ArrayList<User> participients)}
-		\item \method{public boolean deleteUserFromCourse()}
-		\item \method{public ArrayList<User> getUserToDelete()}
-		\item \method{public void setUsersToDelete( ArrayList<User> usersToDelete)}
+		\item \method{public List<User> getParticipients()}
+		\item \method{public void setParticipients(List<User> participients)}
+		\item \method{public void deleteUserFromCourse()}
+		\item \method{public List<User> getUserToDelete()}
+		\item \method{public void setUsersToDelete(List<User> usersToDelete)}
 		\item \method{public int getActualPageNumber()}
 		\item \method{public void goToSpecificPage()}
 		\item \method{public Pagination getPagination()}
@@ -460,11 +452,11 @@
 		\item \method {public String getUsername()}
 		\item \method {public boolean isAuthentificated()}
 		\item \method {public boolean isTls()}
-		\item \method {public void setAuthentificated(Boolean authentificated)}
+		\item \method {public void setAuthentificated(boolean authentificated)}
 		\item \method {public void setHostaddr(String hostaddr)}
 		\item \method {public void setPassword(String password)}
 		\item \method {public void setPort(int port)}
-		\item \method {public void setTls(Boolean tls)}
+		\item \method {public void setTls(boolean tls)}
 		\item \method {public void setUsername(String username)}
 	\end{itemize}
 	
@@ -491,20 +483,20 @@
 		\item \method {public Date getEnddate()}
 		\item \method {public int getMaxUsers()}
 		\item \method {public String getCourseImage()}
-		\item \method {public ArrayList<CourseUnit> getCourseUnits()}
-		\item \method {public ArrayList<User> getCoursAdmins()}
-		\item \method {public ArrayList<User> getUsers()}
-		\item \method {public ArrayList<User> getUsersToInform()}
+		\item \method {public List<CourseUnit> getCourseUnits()}
+		\item \method {public List<User> getCoursAdmins()}
+		\item \method {public List<User> getUsers()}
+		\item \method {public List<User> getUsersToInform()}
 		\item \method {public void setTitle(String title)}
 		\item \method {public void setDiscription(String discription)}
 		\item \method {public void setNextCourseUnit(CourseUnit nextCourseUnit)}
 		\item \method {public void setStartdate(Date startDate)}
 		\item \method {public void setEnddate(Date endDate)}
 		\item \method {public void setMaxUsers(int maxUsers)}
-		\item \method {public void setCourseUnits(ArrayList<CourseUnit> courseUnits) }
-		\item \method {public void setCourseAdmins(ArrayList<User> coursAdmins)}
-		\item \method {public void setUsers(ArrayList<User> users)}
-		\item \method {public void setUsersToInform(ArrayList<User> usersToInform)} 
+		\item \method {public void setCourseUnits(List<CourseUnit> courseUnits) }
+		\item \method {public void setCourseAdmins(List<User> coursAdmins)}
+		\item \method {public void setUsers(List<User> users)}
+		\item \method {public void setUsersToInform(List<User> usersToInform)} 
 		\item \method {public void setCourseImage(String image)} 
 	\end{itemize}
 	
@@ -522,7 +514,7 @@
 		\item \method {public int getMinUsers()}
 		\item \method {public User getCourseAdmin()}
 		\item \method {public Cylce getCycle()}
-		\item \method {public ArrayList<User> getUsers()}
+		\item \method {public List<User> getUsers()}
 		\item \method {public String getCourseImage()}
 		\item \method {public String getLocation()}
 		\item \method {public void setTitle(String title)}
@@ -535,7 +527,7 @@
 		\item \method {public void setMaxUsers(int maxUsers)}
 		\item \method {public void setMinUsers(int minUsers)}
 		\item \method {public void setCourseAdmin(User courseAdmin)}
-		\item \method {public void setUsers(ArrayList<User> users)} 
+		\item \method {public void setUsers(List<User> users)} 
 		\item \method {public void setCourseImage(String image)}
 		\item \method {public void setLocation(String location)}
 	\end{itemize}
@@ -672,65 +664,7 @@
 		\item \method{public static boolean executeBankTransaktion(PaymentInformation payInfo)}
 	\end{itemize}
 	
-	\section{Package interfaces}
-	\begin{tiny}
-		TF
-	\end{tiny}
-	\subsection{Interfaces DAO}
-	Dieses Package stellt Interfaces zur Verfügung, welche die DAO - Klassen implementieren müssen damit gegebenenfalls  ein Wechsel der Datenbank einfach möglich ist.
-	\interface{UserInteraction}
-	Dieses Interface gibt vor, welche Methoden für Datenbankanfragen für das Erhalten bzw. das Schreiben von Benutzerdaten vorhanden sein müssen.
-	\begin{itemize}
-		\item \method{public void createUser(User user, Address address)}
-		\item \method{public ArrayList<User> getUsers(Pagination pagination)}
-		\item \method{public ArrayList<User> getUsers(Pagination pagination, String searchString)}
-		\item \method{public ArrayList<User> getUsersOrdered(Pagination pagination, String searchString, String orderParam)}
-		\item \method{public User getUser(int userID)}
-		\item \method{public int getUserID(String username)}
-		\item \method{public void updateUser(User user, Address address)}
-		\item \method{public void deleteUser(int userID)}
-		\item \method{public ArrayList<Course> getCoursesLeadedBy(int userID, Pagination pagination)}
-	\end{itemize}
-	
-	\interface{CourseInteraction}
-	Dieses Interface gibt vor, welche Methoden für Datenbankanfragen für das Erhalten bzw. das Schreiben von Kursdaten vorhanden sein müssen.
-	\begin{itemize}
-		\item \method{public void createCourse(Course course, Address address)}
-		\item \method{public ArrayList<Course> getCourses(Pagination pagination)}
-		\item \method{public ArrayList<Course> getCourses(Pagination pagination, String searchString)}
-		\item \method{public ArrayList<Course> getCoursesOrdered(Pagination pagination, String searchString, String orderParam)}
-		\item \method{public ArrayList<User> getLeaders(int courseID)}
-		\item \method{public Course getCourse(int courseID)}
-		\item \method{public ArrayList<Course> getCoursesOf(int UserID)}
-		\item \method{public void updateCourse(Course course, Address address)}
-		\item \method{public void deleteCourse(int courseID)}
-		\item \method{public void addUserToCourse(int userID)}
-		\item \method{public void removeUserFromCourse(int userID)}
-		\item \method{public void addLeaderToCourse(int userID)}
-		\item \method{public void removeLeaderFromCourse(int userID)}
-	\end{itemize}
-	
-	\interface{CourseUnitInteraction}
-	Dieses Interface gibt vor, welche Methoden für Datenbankanfragen für das Erhalten bzw. das Schreiben von Kurseinheitsdaten vorhanden sein müssen.
-	\begin{itemize}
-		\item \method{public boolean createCourseUnit(CourseUnit courseUnit, Address address)}
-		\item \method{public CourseUnit getCourseUnit(int courseUnitID)}
-		\item \method{public ArrayList<CourseUnit> getCourseUnitsFromCourse(int courseID, Pagination pagination)}
-		\item \method{public ArrayList<CourseUnit> getCourseUnitsOf(int userID)}
-		\item \method{public void updateCourseUnit(CourseUnit courseUnit, Address address)}
-		\item \method{public void deleteCourseUnit(int courseUnitID)}
-		\item \method{public void addUserToCourseUnit(int userID)}
-		\item \method{public void removeUserFromCourseUnit(int userID)}
-	\end{itemize}
-	
-	\interface{StatisticsInteraction}
-	Dieses Interface gibt vor, welche Methoden für Datenbankanfragen für das Erhalten von Statistikdaten oder das Schreiben dieser in die Datenbank vorhanden sein müssen.
-	\begin{itemize}
-		\item \method{public HashMap<Date, Float> getIncomePerDay(Date actualDate)}
-		\item \method{public HashMap<Date, Float> getIncomePerWeek(Date actualDate)}
-		\item \method{public HashMap<User, Float> getIncomePerLeader(Pagination pagination)}
-		\item \method{public HashMap<Course, Float> getIncomePerCourse(Pagination pagination)}
-	\end{itemize}
+
 	
 	\section{Package database}
 	\begin{tiny}
