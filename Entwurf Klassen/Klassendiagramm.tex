@@ -281,9 +281,10 @@
 	\begin{itemize}
 		\item \method{public List<User> getParticipients()}
 		\item \method{public void setParticipients(List<User> participients)}
-		\item \method{public void deleteUserFromCourse()}
-		\item \method{public List<User> getUserToDelete()}
+		\item \method{public void deleteUsersFromCourse()}
+		\item \method{public List<User> getUsersToDelete()}
 		\item \method{public void setUsersToDelete(List<User> usersToDelete)}
+		\item \method{public String cancel()}
 		\item \method{public int getActualPageNumber()}
 		\item \method{public void goToSpecificPage()}
 		\item \method{public Pagination getPagination()}
@@ -296,14 +297,14 @@
 	\kursiv{ManagedBean, RequestScoped}\\
 	Die Klasse ist für Einstellungen bezüglich des Systems zuständig, d.h. das Hochladen einer CSS - Datei, eines Logos, des Festlegen des Überziehungskredits und der Registrierungseinstellungen. Des Weiteren ist sie zuständig für die Weiterleitung zur Benutzer- und Kursverwaltung.
 	\begin{itemize}
-		\item \method{public void determineAccountActivationType(String accountActivationType)}
+		\item \method{public void determineAccountActivationType()}
 		\item \method{public String getAccountActivationType()}
 		\item \method{public void setAccountActivationType(String accountActivationType)}
-		\item \method{public void determineOverdraftCredit(float overdraftCredit)}
+		\item \method{public void determineOverdraftCredit()}
 		\item \method{public float getOverdraftCredit()}
 		\item \method{public void setOverdraftCredit(float overdraftCredit)}
-		\item \method{public boolean uploadCustomStyleCSS()}
-		\item \method{public boolean uploadLogo()}
+		\item \method{public void uploadCustomStyleCSS()}
+		\item \method{public void uploadLogo()}
 		\item \method{public String loadEditImprintPage()}
 		\item \method{public String loadCreateNewUserPage()}
 		\item \method{public String loadManageUserPage()}
@@ -336,7 +337,7 @@
 		\item \method{public boolean depositAmountOnUserAccount() throws BankAccountException}
 		\item \method{public User getUser()}
 		\item \method{public void setUser(User user)}
-		\item \method{public int getAmountToDeposit()}
+		\item \method{public float getAmountToDeposit()}
 		\item \method{public void setAmountToDeposit(float amountToDeposit)}
 		\item \method{public SessionUser getSessionUser()}
 		\item \method{public void setSessionUser(SessionUser userSession)}
@@ -346,7 +347,7 @@
 	\kursiv{ManagedBean, ViewScoped}\\
 	Die Klasse ist für die Generierung und Darstellung der Einnahmestatistiken zuständig.
 	\begin{itemize}
-		\item \method{public void displayStatistic(String displayParam)}
+		\item \method{public void displayStatistic()}
 		\item \method{public String getDisplayParam()}
 		\item \method{public void setDisplayParam(String displayParam)}
 		\item \method{public int getActualPageNumber()}
@@ -427,13 +428,13 @@
 		\item \method{public void setSmtpServer(SmtpServer smtpServer)}
 	\end{itemize}
 	
-	\subsection{InterfaceSession}
+	\subsection{Interface Session}
 		\begin{itemize}
 			\item \method{public SessionUser getSessionUser()}
 			\item \method{public void setSessionUser(SessionUser userSession)}
 		\end{itemize}
 		
-	\subsection{PaginationInfo}
+	\subsection{Interface PaginationInfo}
 		\begin{itemize}
 			\item \method{public int getActualPageNumber()}
 			\item \method{public void goToSpecificPage()}
