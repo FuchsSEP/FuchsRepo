@@ -145,6 +145,7 @@
 		\item \method{public String signUpForCourse() throws CourseRegistrationException}
 		\item \method{public String signOffFromCourse() throws CourseRegistrationException}
 		\item \method{public void selectAllCourseUnits()}
+		\item \method{public boolean isCourseSelected()}
 		\item \method{public String signUpForCourseUnits() throws CourseRegistrationException}
 		\item \method{public String signOffFromCourseUnits() throws CourseRegistrationException}
 		\item \method{public List<CourseUnit> getSelectedCourseUnits()}
@@ -168,18 +169,17 @@
 	\kursiv{ManagedBean, ViewScoped}\\
 	Die Klasse ist zuständig für das Anlegen, Bearbeiten und Löschen von Kurseinheiten.
 	\begin{itemize}
-		\item \method{public boolean createCourseUnit(boolean isRegular)}
-		\item \method{public void editCourseUnit()}
-		\item \method{public boolean saveCourseUnit(boolean editAllIfRegular)}
-		\item \method{public boolean deleteCourseUnit(boolean deleteAllIfRegular)}
-		\item \method{public boolean addUserToCourseUnit(User user)}
+		\item \method{public String createCourseUnit()}
+		\item \method{public String editCourseUnit()}
+		\item \method{public String saveCourseUnit(boolean editAllIfRegular)}
+		\item \method{public String deleteCourseUnit(boolean deleteAllIfRegular)}
+		\item \method{public void addUserToCourseUnit(User user)}
 		\item \method{public User getUserToAdd()}
 		\item \method{public void setUserToAdd(User userToAdd)}
-		\item \method{public boolean deleteUsersFromCourse()}
+		\item \method{public void deleteUsersFromCourse()}
 		\item \method{public List<User> getUserToDelete()}
 		\item \method{public void setUsersToDelete(List<User> usersToDelete)}
 		\item \method{public boolean getIsRegularCourseUnit()}
-		\item \method{public void setIsRegularCourseUnit(boolean isRegular)}
 		\item \method{public Cycle getCylceOfCourseUnit()}
 		\item \method{public void setCylceOfCourseUnit(Cycle cycle)}
 		\item \method{public CourseUnit getCourseUnit()}
@@ -198,7 +198,7 @@
 	\kursiv{ManagedBean, RequestScoped}\\
 	Die Klasse ist zuständig für die Benachrichtigung von Benutzern durch Kursleiter oder Administratoren.
 	\begin{itemize}
-		\item \method{public boolean sendEMail() throws MailingException}
+		\item \method{public void sendEMail() throws MailingException}
 		\item \method{public Mail getMail()}
 		\item \method{public void setMail(Mail mail)}
 		\item \method{public String getSubject()}
@@ -230,17 +230,15 @@
 	\kursiv{ManagedBean, RequestScoped}\\
 	Die Klasse ist zuständig für die Verwaltung der Kurse, d.h. für das Anlegen und Löschen von Kursen sowie die Trainerverwaltung.
 	\begin{itemize}
-		\item \method{public String createCourse(Course course)}
-		\item \method{public boolean uploadCoursePic()}
+		\item \method{public String createCourse()}
+		\item \method{public void uploadCoursePic()}
 		\item \method{public String deleteCourse()}
-		\item \method{public boolean addCourseLeader(User leader)}
+		\item \method{public void addCourseLeader()}
 		\item \method{public User getLeaderToAdd()}
 		\item \method{public void setLeaderToAdd(User leaderToAdd)}
-		\item \method{public void removeCourseLeader()}
+		\item \method{public void removeCourseLeaders()}
 		\item \method{public List<User> getLeadersToDelete()}
 		\item \method{public void setLeadersToDelete(List<User> leadersToDelete)}
-		\item \method{public User getCourseLeader()}
-		\item \method{public void setCourseLeader()}
 		\item \method{public Course getCourse()}
 		\item \method{public void setCourse(Course course)}
 		\item \method{public SessionUser getSessionUser()}
@@ -254,8 +252,8 @@
 		\item \method{public void activateAccounts()}
 		\item \method{public List<User> getUsersToActivate()}
 		\item \method{public void setUsersToActivate(List<User> usersToActivate)}
-		\item \method{public List<User> getSelectedUsers()}
-		\item \method{public void setSelectedUsers(List<User> selectedUsers)}
+		\item \method{public List<User> getUsers()}
+		\item \method{public void setUsers(List<User> users)}
 		\item \method{public int getActualPageNumber()}
 		\item \method{public void goToSpecificPage()}
 		\item \method{public Pagination getPagination()}
@@ -268,7 +266,7 @@
 	\kursiv{ManagedBean, RequestScoped}\\
 	Die Klasse ist zuständig für die Benutzerverwaltung, d.h. das Anlegen von Benutzern und das Löschen von Benutzern.
 	\begin{itemize}
-		\item \method{public String createUser(User user)}
+		\item \method{public String createUser()}
 		\item \method{public void uploadProfilPic()}
 		\item \method{public String deleteUser()}
 		\item \method{public User getUser()}
@@ -420,9 +418,11 @@
 	\kursiv{ManagedBean, ApplicationScoped}\\
 	Die Klasse ist für die E-Mailbenachrichtigung der Benutzer zuständig. Sie ist sowohl für die automatisch gesendeten E-Mails, wie unter anderem die Verifizierung oder Accountaktivierungsbestätigung, als auch für die von Kursleitern gesendeten Mails zuständig.
 	\begin{itemize}
-		\item \method{public boolean sendVerificationMail(int UserID) throws MailingException}
-		\item \method{public boolean sendConfirmaitionMail(int UserID) throws MailingException}
-		\item \method{public boolean sendMail(String subject, String message, List<String> mailRecipients) throws MailingException}
+		\item \method{public void sendMail (List< String > recipients, String sender, String subject, String message)}
+		\item \method{public void sendAuthentificationMessage (int userID)}
+		\item \method{public void sendConfirmationMessage (int userID)}
+		\item \method{public void sendRegistrationMessage (int userID)}
+		\item \method{public void sendNewPasswordMessage (int userID)}
 		\item \method{public SmtpServer getSmtpServer()}
 		\item \method{public void setSmtpServer(SmtpServer smtpServer)}
 	\end{itemize}
@@ -755,6 +755,15 @@
 		\item \method{public static Map<Course, Float> getIncomePerCourse(Pagination pagination)}
 	\end{itemize}
 	
+	\class{GeneralDAO}
+	Die Klasse ist zuständig für das Holen einer im System eindeutigen Identifikationsnummer für einen Benutzer, einen Kurs oder eine Kurseinheit.
+	\begin{itemize}
+		\item \method{public static int getNewUserID()}
+		\item \method{public static int getNewCourseID()}
+		\item \method{public static int getNewCourseUnitID()}
+	\end{itemize}
+	
+	
 	\section{Package system}
 	\begin{tiny}
 		TF
@@ -827,15 +836,6 @@
 		\item \method{public static PropertyManager getInstance()}
 		\item \method{public String getProperty(String key)}
 	\end{itemize}
-	
-	\subsection{Klasse IDGenerator(evtl über DAO)}
-	Die Klasse ist zuständig für das Generieren einer im System eindeutigen Identifikationsnummer für einen Benutzer, einen Kurs oder eine Kurseinheit.
-	\begin{itemize}
-		\item \method{public static int generateUserID()}
-		\item \method{public static int generateCourseID()}
-		\item \method{public static int generateCourseUnitID(int CourseID)}
-	\end{itemize}
-	
 	
 	\subsection{Klasse EncodingFilter}
 	Diese Klasse implementiert die Filter - Methoden um UTF-8 Encoding zu
