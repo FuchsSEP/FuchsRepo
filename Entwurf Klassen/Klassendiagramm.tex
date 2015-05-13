@@ -76,6 +76,7 @@
 		\item \method{public void setSearchParam(String searchParam)}
 		\item \method{public String getSearchTerm()}
 		\item \method{public void setSearchTerm(String searchTerm)}
+		\item \method{public String loadUserProfilPageOfSelectedUser()}
 		\item \method{public void sortBySpecificColumn(String columnname)}
 		\item \method{public int getActualPageNumber()}
 		\item \method{public void goToSpecificPage()}
@@ -89,17 +90,19 @@
 	\kursiv{ManagedBean, ViewScoped}\\
 	Diese Klasse stellt den Mechanismus zum Suchen von Kursen zur Verfügung. Außerdem wird darin die Einschränkung des angezeigten Kursangebots realisiert.
 	\begin{itemize}
-		\item \method{public void searchForFreeCourses()}
 		\item \method{public void displayCoursesInSpecificPeriod()}
 		\item \method{public String getDisplayPeriod()}
 		\item \method{public void setDisplayPeriod(String displayPeriod)}
-		\item \method{public List<Course> getSearchResult()}
-		\item \method{public void setSearchResult(List<Course> searchResult)}
-		\item \method{public void search(String searchParam, String searchTerm)}
+		\item \method{public void search()}
+		\item \method{public boolean getSearchOnlyFreeCourses()}
 		\item \method{public String getSearchParam()}
 		\item \method{public void setSearchParam(String searchParam)}
 		\item \method{public String getSearchTerm()}
 		\item \method{public void setSearchTerm(String searchTerm)}
+		\item \method{public void setSearchOnlyFreeCourses(boolean onlyFree)}
+		\item \method{public List<Course> getSearchResult()}
+		\item \method{public void setSearchResult(List<Course> searchResult)}
+		\item \method{public String loadCourseDetailsPageOfSelectedCourse()}
 		\item \method{public void sortBySpecificColumn()}
 		\item \method{public int getActualPageNumber()}
 		\item \method{public void goToSpecificPage()}
@@ -113,10 +116,10 @@
 	\kursiv{ManagedBean, ViewScoped}\\
 	Diese Klasse ist zuständig für die Anzeige und das Bearbeiten der Benutzerdaten. Des Weiteren realisiert sie die Darstellung der Liste aller vom Benutzer geleiteten Kurse.
 	\begin{itemize}
-		\item \method{public void editUserdata()}
-		\item \method{public void saveUserdata()}
+		\item \method{public String editUserdata()}
+		\item \method{public String saveUserdata()}
 		\item \method{public void uploadProfilPic()}
-		\item \method{public void setUserInactive()}
+		\item \method{public String setUserInactive()}
 		\item \method{public void depositMoneyPerCreditcard()}
 		\item \method{public User getUser()}
 		\item \method{public void setUser(User userToSet)}
@@ -134,8 +137,8 @@
 	\kursiv{ManagedBean, ViewScoped}\\
 	Die Klasse ist zuständig für die Anzeige der Kursdetails und das Bearbeiten von Kursen.
 	\begin{itemize}
-		\item \method{public void editCourse()}
-		\item \method{public boolean saveCourse()}
+		\item \method{public String editCourse()}
+		\item \method{public String saveCourse()}
 		\item \method{public Course getCourse()}
 		\item \method{public void setCourse(Course course)}
 		\item \method{public boolean registeredForCourseNews()}
@@ -227,13 +230,13 @@
 	\kursiv{ManagedBean, RequestScoped}\\
 	Die Klasse ist zuständig für die Verwaltung der Kurse, d.h. für das Anlegen und Löschen von Kursen sowie die Trainerverwaltung.
 	\begin{itemize}
-		\item \method{public boolean createCourse(Course course)}
+		\item \method{public String createCourse(Course course)}
 		\item \method{public boolean uploadCoursePic()}
-		\item \method{public boolean deleteCourse()}
+		\item \method{public String deleteCourse()}
 		\item \method{public boolean addCourseLeader(User leader)}
 		\item \method{public User getLeaderToAdd()}
 		\item \method{public void setLeaderToAdd(User leaderToAdd)}
-		\item \method{public boolean removeCourseLeader()}
+		\item \method{public void removeCourseLeader()}
 		\item \method{public List<User> getLeadersToDelete()}
 		\item \method{public void setLeadersToDelete(List<User> leadersToDelete)}
 		\item \method{public User getCourseLeader()}
@@ -248,7 +251,7 @@
 	\kursiv{ManagedBean, ViewScoped}\\
 	Die Klasse ist für die Aktivierung von Benutzeraccounts durch einen Kursleiter oder Administrator zuständig.
 	\begin{itemize}
-		\item \method{public boolean activateAccounts()}
+		\item \method{public void activateAccounts()}
 		\item \method{public List<User> getUsersToActivate()}
 		\item \method{public void setUsersToActivate(List<User> usersToActivate)}
 		\item \method{public List<User> getSelectedUsers()}
@@ -265,9 +268,9 @@
 	\kursiv{ManagedBean, RequestScoped}\\
 	Die Klasse ist zuständig für die Benutzerverwaltung, d.h. das Anlegen von Benutzern und das Löschen von Benutzern.
 	\begin{itemize}
-		\item \method{public boolean createUser(User user)}
-		\item \method{public boolean uploadProfilPic()}
-		\item \method{public boolean deleteUser()}
+		\item \method{public String createUser(User user)}
+		\item \method{public void uploadProfilPic()}
+		\item \method{public String deleteUser()}
 		\item \method{public User getUser()}
 		\item \method{public void setUser(User user)}
 		\item \method{public SessionUser getSessionUser()}
