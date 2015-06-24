@@ -34,9 +34,14 @@
 			\end{figure}
 			
 			\begin{title}
-				\title{\Huge{\textbf{Kurseinheiten-Manager \\ \ \\ \ \\ \
-							Handbuch Installation\\ 
-							\ \\}}}
+				\title{\Huge{\textbf{Kurseinheiten-Manager \\ \ \\ 
+							\ \\
+							Handbuch Installation
+							}}}
+			\begin{figure}[th]
+				\centering
+				\includegraphics[width=0.40\textwidth, angle=0]{Grafiken/installation-instructions-icon}
+			\end{figure}
 				
 			\end{title}
 			\hspace{3cm}
@@ -50,11 +55,10 @@
         	\hspace{1,5cm}\\
         	Version: 1.0 \\
         	\hspace{1,5cm}\\
-        	Datum: 26.06.2015\\[50pt]
+        	Datum: 26.06.2015\\[28pt]
         	Team 3 \\
-    
-		    \ \\
-        
+
+			\ \\
         \begin{tabular}{ | l | l | l | l |}
         	\hline
         	\textbf{Matrikelnummer} & \textbf{Name} & \textbf{Phase} & \textbf{E-Mail}  \\ \hline
@@ -65,8 +69,7 @@
         	58379 & Patrick Cretu  &  Validierung & cretu@fim.uni-passau.de \\ \hline
         \end{tabular}
         
-        \ \\
-        \ \\
+      
        
         
         
@@ -79,6 +82,8 @@
 \chapter{Benötigte Software}
 Für die Vorbereitung, Einrichtung und Inbetriebnahme der Webapplikation \textbf{ofCourse} wird folgende Software benötigt.
 \begin{itemize}
+	\item Java Runtime Environment 8\\
+	{\it Link:\\} \url{https://www.java.com/de/download/}
 	\item Apache Tomcat 8\\
 	{\it Link:\\} \url{https://tomcat.apache.org/download-80.cgi}
 	\item 7-zip\\
@@ -93,11 +98,51 @@ Für die Vorbereitung, Einrichtung und Inbetriebnahme der Webapplikation \textbf
 \chapter{Einrichtung des Tomcat Servers}
 \paragraph{The simple way}\ \\
 \ \\
-Laden Sie den Tomcat Windows Installer von URL 
+Laden Sie die JRE von URL
+\begin{center}
+	 \url{https://www.java.com/de/download/}
+\end{center}
+und installieren Sie es auf ihrem System.\ \\
+\ \\
+Laden Sie nun den Tomcat Windows Installer von URL 
 \begin{center}
 	\url{https://tomcat.apache.org/download-80.cgi}
 \end{center}
-herunter und starten Sie den Installationsvorgang indem Sie die heruntergeladene Datei doppelklicken.
+herunter und starten Sie den Installationsvorgang indem Sie die heruntergeladene Datei doppelklicken.\\
+Fuehren Sie das Setup durch, bis Sie auf die Seite {\it Configuration} kommen.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\linewidth]{Grafiken/TomcatInstall1}
+\caption{Seite Configuration des Tomcat Setups}
+\label{fig:TomcatInstall1}
+\end{figure}\\
+Aendern Sie den {\it HTTP/1.1 Connector Port} auf \textbf{8003} und legen Sie einen {\it User Name} und ein {\it Password} fuer den Administrator fest.(vgl Abbildung \ref{fig:TomcatInstall1})\\
+\ \\
+Auf der darauffolgenden Seite des Setups werden Sie aufgefordert den Pfad der {\it Java Virtual Machine} anzugeben.\\
+Geben Sie hier den Pfad der im vorherigen installierten {\it Java Runtime Environment} an.\\
+\ \\
+Fuehren Sie nun die Installation zu Ende indem Sie das restliche Setup durchlaufen.\\
+Ihr Tomcat Server ist nun installiert.
+\ \\
+Wechseln Sie nun in da Installationsverzeichnis des Tomcat Servers. Dort finden Sie folgende Dateien:
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\linewidth]{Grafiken/TomcatDirectory}
+\caption{Installationsverzeichnis}
+\label{fig:TomcatDirectory}
+\end{figure}\\
+Durch Klicken auf die Datei {\it Tomcat8} starten Sie den Tomcat Server direkt.\\
+\newpage
+\ \\
+Durch Klicken auf die Datei {\it Tomcat8w} oeffnen Sie ein Fenster in dem Sie den Server weiter konfigurieren koennen und durch 
+Betaetigen des \textbf{Start} Buttons starten Sie den Server.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\linewidth]{Grafiken/TomcatStartup}
+\caption{Start/Konfigurationsfenster des Tomcat Servers}
+\label{fig:TomcatStartup}
+\end{figure}
+
 
 \paragraph{The long and hard way}\ \\
 \ \\
@@ -135,7 +180,7 @@ Diese öffnen Sie nun jeweils mit {\it Notepad++ (oder einem Texteditor Ihrer Wa
 \chapter{Deployment ofCourse}
 Starten Sie nun ihren Tomcat Server. Durch Eingabe von
 \begin{center}
-		{\it http://localhost:8080}
+		{\it http://localhost:8003}
 \end{center}
 werden Sie auf die Startseite des Servers geleitet. Hier Betätigen Sie den Button \textbf{Manager App} auf der rechten Seite.
 \begin{figure}[h]
@@ -177,7 +222,7 @@ Sie sehen nun {\it ofCourse} im {\it Application} - Bereich des Servers.
 \ \\
 Geben Sie nun im Browser 
 \begin{center}
-	{\it http://localhost:8080/OfCourse/}
+	{\it http://localhost:8003/OfCourse/}
 \end{center}
 Sie befinden sich nun auf der Startseite von \textbf{ofCourse}.
 \begin{figure}[h]
@@ -190,7 +235,7 @@ Sie befinden sich nun auf der Startseite von \textbf{ofCourse}.
 \chapter{Erster Login}
 Geben Sie in ihren Browser folgende URL ein:
 \begin{center}
-	{\it http://localhost:8080/OfCourse/}
+	{\it http://localhost:8003/OfCourse/}
 \end{center}
 Sie befinden sich nun auf der Startseite von \textbf{ofCourse}.
 \begin{figure}[h]
