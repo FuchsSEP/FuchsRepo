@@ -12,7 +12,7 @@
 \usepackage{longtable}
 \usepackage{listings}
 \usepackage{tabularx}
-\usepackage[left=2.00cm, right=2.50cm, bottom =2.53cm]{geometry}
+\usepackage[left=2.50cm, right=2.50cm, bottom =3.53cm]{geometry}
 \usepackage{ pdflscape}
 %\usepackage{pdfpages}
 %\usepackage[section]{placeins}
@@ -79,20 +79,118 @@
 \chapter{Benötigte Software}
 Für die Vorbereitung, Einrichtung und Inbetriebnahme der Webapplikation \textbf{ofCourse} wird folgende Software benötigt.
 \begin{itemize}
-	\item Java SE Development Kit 8
-	\item PostgreSQL Datenbank
-	\item Apache Tomcat 8
-	\item 7Zip
-	\item Webbrowser(z.b. Firefox 38)
+	\item Apache Tomcat 8\\
+	{\it Link:\\} \url{https://tomcat.apache.org/download-80.cgi}
+	\item 7-zip\\
+	{\it Link:\\} \url{http://www.7-zip.de/}
+	\item Notepad++ (oder einen Texteditor Ihrer Wahl)\\
+	{\it Link:\\} \url{https://notepad-plus-plus.org/download/v6.7.9.2.html}
+	\item Webbrowser(z.B. Firefox 38)\\
+	{\it Link:\\} \url{https://www.mozilla.org/de/firefox/new/}
+	\item PostgreSQL Datenbank\\
+	{\it Link:\\} \url{http://de.enterprisedb.com/products-services-training/pgdownload}
 \end{itemize}
 \chapter{Einrichtung des Tomcat Servers}
+\paragraph{The simple way}\ \\
+\ \\
+Laden Sie den Tomcat Windows Installer von URL 
+\begin{center}
+	\url{https://tomcat.apache.org/download-80.cgi}
+\end{center}
+herunter und starten Sie den Installationsvorgang indem Sie die heruntergeladene Datei doppelklicken.
+
+\paragraph{The long and hard way}\ \\
+\ \\
+Wenn Sie nicht den Installer verwenden wollen, folgen Sie bitte den Anweisungen unter:
+\begin{center}
+	\url{http://tomcat.apache.org/tomcat-8.0-doc/RUNNING.txt}
+\end{center}
 
 \chapter{Vorbereitung von ofCourse}
+Öffnen Sie die Datei \textbf{ofCourse.war} mit der Software {\it 7Zip}.\\
+Sie sehen nun die im folgenden abgebildeten Ordner:
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\linewidth]{Grafiken/7ZipOfCourse1}
+\caption{ofCourse.war in 7Zip geoeffnet}
+\label{fig:7ZipOfCourse1}
+\end{figure}\\
+Navigieren Sie nun zum Ordner \textbf{config}. Diesen erreichen Sie folgendermaßen:
+\begin{center}
+	{\it WEB-INF > config}
+\end{center}
+In diesem Ordner finden Sie die Dateien:
+\begin{itemize}
+	\item ofCourse.properties
+	\item mail.properties
+\end{itemize}
+Diese öffnen Sie nun jeweils mit {\it Notepad++ (oder einem Texteditor Ihrer Wahl)}. Füllen diese Dateien mit ihren Daten und speichern Sie. 
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{Grafiken/propertiesComplete}
+\caption{Zu füllende Dateien}
+\label{fig:propertiesComplete}
+\end{figure}\ \\
+\textbf{ofCourse} ist nun mit ihren Daten konfiguriert.\\
 \chapter{Deployment ofCourse}
+Starten Sie nun ihren Tomcat Server. Durch Eingabe von
+\begin{center}
+		{\it http://localhost:8080}
+\end{center}
+werden Sie auf die Startseite des Servers geleitet. Hier Betätigen Sie den Button \textbf{Manager App} auf der rechten Seite.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\linewidth]{Grafiken/ServerStartPage}
+\caption{Startseite des Tomcat Servers}
+\label{fig:ServerStartPage}
+\end{figure}
+Sie werden nun aufgefordert ihre Zugangsdaten einzugeben. Geben Sie die in {\it Kapitel 2 Einrichten des Tomcat Servers} gewählt haben. Sie werden nun auf die \textbf{Tomcat Web Application Manager} Seite weitergeleitet.
+Scrollen Sie nach unten, bis Sie den {\it Deploy} - des Servers sehen.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{Grafiken/ServerDeploy}
+\caption{Deploybereich des Tomcat Servers}
+\label{fig:ServerDeploy}
+\end{figure}
+\\
+Druecken Sie nun im Abschnitt {\it WAR file to deploy} den \textbf{Durchsuchen} Button und waehlen sie die {\it ofCourse.war} - Datei aus. Durch Betätigen des Buttons \textbf{Deploy} wird die .war - Datei im Server depolyed.\\
+\ \\
+Sie sehen nun {\it ofCourse} im {\it Application} - Bereich des Servers.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\linewidth]{Grafiken/ApplicationBereichServerDeployed}
+\caption{Application Bereich des Tomcat Servers}
+\label{fig:ApplicationBereichServerDeployed}
+\end{figure}
+\ \\
+\textbf{ofCourse} laeuft nun noch nicht auf ihrem Server. Um die Applikation zu starten, druecken Sie den \textbf{Start} Button bei dem Eintrag {\it ofCourse}.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\linewidth]{Grafiken/ofCourseDeployed}
+\caption{ofCourse laeuft auf dem Server}
+\label{fig:OfCourseDeployed}
+\end{figure}
+\\ 
+\textbf{ofCourse} laeuft nun auf dem Server. Hier können sie auch einstellen nach wie vielen Minuten ohne Taetigkeit die Session zerstoert werden soll.\ \\
+\ \\
+\newpage
+\ \\
+Geben Sie nun im Browser 
+\begin{center}
+	{\it http://localhost:8080/OfCourse/}
+\end{center}
+Sie befinden sich nun auf der Startseite von \textbf{ofCourse}.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\linewidth]{Grafiken/indexPage}
+	\caption[]{Startseite von ofCourse}
+	\label{fig:indexPage1}
+\end{figure} 
+
 \chapter{Erster Login}
 Geben Sie in ihren Browser folgende URL ein:
 \begin{center}
-	{\it http://localhost:8003/OfCourse/}
+	{\it http://localhost:8080/OfCourse/}
 \end{center}
 Sie befinden sich nun auf der Startseite von \textbf{ofCourse}.
 \begin{figure}[h]
@@ -112,7 +210,7 @@ Durch Betätigen des  gruenen Buttons \textbf{Registrieren/Login} links oben auf
 Füllen Sie nun die Felder {\it Benutzername} und {\it Passwort} mit folgenden Daten aus und Betätigen Sie den \textbf{Anmelden} Button.
 \begin{center}
 	Benutzername: {\it admin1}\\
-	Passwort: {\it password}
+	Passwort: {\it Password!123}
 \end{center}
 Sie werden nun auf die \textbf{Meine Kurse} Seite weitergeleitet und sind nun erfolgreich im System angemeldet.
 \begin{figure}[h]
